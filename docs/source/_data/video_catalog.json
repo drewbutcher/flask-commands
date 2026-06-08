@@ -65,6 +65,16 @@
       "description": "Watch the new project come to life so you can connect the generated files on disk to the running app in the browser.",
       "video_id": ""
     },
+    "use-flask-commands-inside-the-new-project": {
+      "title": "Use Flask-Commands Inside the New Project",
+      "description": "Learn how Flask-Commands behaves once a project virtual environment is active, and why using a separate terminal tab keeps app-running and file generation cleanly separated.",
+      "video_id": ""
+    },
+    "alternative-manual-startup": {
+      "title": "Alternative (Manual Startup)",
+        "description": "Learn how to start the generated project manually through its virtual environment when you are not using the helper script or are working outside macOS.",
+      "video_id": ""
+    },
     "project-root-safety": {
       "title": "Project-root safety",
       "description": "Learn why the generators only run inside a valid Flask-Commands project and how that safeguard helps prevent confusing writes in the wrong directory.",

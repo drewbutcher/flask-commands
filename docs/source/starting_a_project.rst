@@ -150,7 +150,9 @@ If Visual Studio Code opens the current directory, the setup is complete.
 
 
 Use Flask-Commands Inside the New Project
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
+
+.. youtube_embed:: use-flask-commands-inside-the-new-project
 
 Once you move into the new project and activate its virtual environment, the
 ``flask`` command will come from that project's local environment.
@@ -170,8 +172,8 @@ uses that environment’s local ``flask`` command instead of the global one.
 
 That means commands like ``flask make:view`` will only work in one of two ways:
 
-1. Use Flask-Commands from a separate terminal tab
-##################################################
+Use Flask-Commands from a separate terminal tab
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This is the recommended option.
 
@@ -201,8 +203,8 @@ This setup gives you a nice split:
 - one terminal tab for running the app
 - one terminal tab for generating files
 
-2. Install Flask-Commands inside the project virtual environment
-################################################################
+Install Flask-Commands inside the project virtual environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you prefer, you can also install Flask-Commands directly into the project's
 virtual environment.
@@ -228,7 +230,9 @@ one global version of Flask-Commands instead of trying to keep multiple versions
 up-to-date (one for every project).
 
 Alternative (Manual Startup)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
+
+.. youtube_embed:: alternative-manual-startup
 
 If you prefer to start up manually (not using ``run.sh``), or if you are not
 on macOS, the manual startup path is still available through the project

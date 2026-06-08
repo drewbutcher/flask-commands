@@ -41,6 +41,8 @@ def file_copy_templates(project_path: str, include_db: bool, replacements: Optio
         ".env": os.path.join(project_no_db_directory, ".env"),
         ".env.example": os.path.join(project_no_db_directory, ".env.example"),
         os.path.join("app", "__init__.py"): os.path.join(project_no_db_directory, "app", "__init__.py"),
+        os.path.join("config", "development_config.py"): os.path.join(project_no_db_directory, "config", "development_config.py"),
+        os.path.join("config", "production_config.py"): os.path.join(project_no_db_directory, "config", "production_config.py"),
     }
 
     for root, directories, files in os.walk(project_root_directory):
@@ -61,7 +63,7 @@ def file_copy_templates(project_path: str, include_db: bool, replacements: Optio
             template_path = source_path
             if not include_db and relative_path in no_db_overrides:
                 template_path = no_db_overrides[relative_path]
-                
+
             content = _read_template(template_path)
 
             if replacements:

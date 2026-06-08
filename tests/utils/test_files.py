@@ -94,6 +94,71 @@ def test_file_copy_templates_uses_no_db_override_for_app_init(tmp_path):
     assert copied_contents == _read_template(no_db_app_init)
     assert copied_contents != _read_template(db_app_init)
 
+def test_file_copy_templates_uses_no_db_overrides_for_config_files(tmp_path):
+    file_copy_templates(
+        str(tmp_path),
+        include_db=False,
+        replacements=None,
+    )
+
+    package_root = os.path.dirname(os.path.dirname(files_module.__file__))
+
+    no_db_development_template_path = os.path.join(
+        package_root,
+        "project_no_db",
+        "config",
+        "development_config.py",
+    )
+    db_development_template_path = os.path.join(
+        package_root,
+        "project",
+        "config",
+        "development_config.py",
+    )
+
+    no_db_production_template_path = os.path.join(
+        package_root,
+        "project_no_db",
+        "config",
+        "production_config.py",
+    )
+    db_production_template_path = os.path.join(
+        package_root,
+        "project",
+        "config",
+        "production_config.py",
+    )
+
+    copied_development_config_path = tmp_path / "config" / "development_config.py"
+    copied_production_config_path = tmp_path / "config" / "production_config.py"
+
+    copied_development_config_contents = copied_development_config_path.read_text(
+        encoding="utf-8"
+    )
+    copied_production_config_contents = copied_production_config_path.read_text(
+        encoding="utf-8"
+    )
+
+    assert copied_development_config_path.exists()
+    assert copied_production_config_path.exists()
+
+    assert copied_development_config_contents.splitlines() == _read_template(
+        no_db_development_template_path
+    ).splitlines()
+    assert copied_development_config_contents.splitlines() != _read_template(
+        db_development_template_path
+    ).splitlines()
+
+    assert copied_production_config_contents.splitlines() == _read_template(
+        no_db_production_template_path
+    ).splitlines()
+    assert copied_production_config_contents.splitlines() != _read_template(
+        db_production_template_path
+    ).splitlines()
+
+    assert "SQLALCHEMY" not in copied_development_config_contents
+    assert "SQLALCHEMY" not in copied_production_config_contents
+
 def test_file_copy_templates_applies_replacements(tmp_path, monkeypatch):
     calls = []
     project_root_directory_path = os.path.join(
@@ -193,7 +258,6 @@ def test_file_insert_flask_import_name_into_lines_does_not_duplicate_existing_me
         "print('hello')",
     ]
     assert new_lines == expected_outcome
-
 
 def test_file_insert_flask_import_name_into_lines_inserts_full_import_when_no_flask_import_exists():
     lines = ["import os", "", "print('hello')"]

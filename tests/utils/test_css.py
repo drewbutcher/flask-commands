@@ -50,6 +50,44 @@ def test_install_tailwind_success_calls_append_and_success_message(tmp_path, mon
     assert called["append"] == str(tmp_path)
     assert any("Success: Tailwind installed" in msg for msg in called["secho"])
 
+def test_install_tailwind_uses_resolved_npm_path(tmp_path, monkeypatch, capsys):
+    npm_path = r"C:\Program Files\nodejs\npm.cmd"
+    calls = []
+
+    monkeypatch.setattr(css_module.shutil, "which", lambda command: npm_path)
+
+    def fake_run(args, check, cwd, capture_output, text):
+        calls.append((args, check, cwd, capture_output, text))
+
+    monkeypatch.setattr(css_module.subprocess, "run", fake_run)
+
+    css_module.install_tailwind(str(tmp_path))
+    capsys.readouterr()
+
+    assert calls == [(
+        [npm_path, "install", "tailwindcss", "@tailwindcss/cli"],
+        True,
+        str(tmp_path),
+        True,
+        True,
+    )]
+
+    assert (tmp_path / "package.json").exists()
+
+def test_install_tailwind_handles_npm_start_error(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(css_module.shutil, "which", lambda _: "/usr/bin/npm")
+
+    def fake_run(*args, **kwargs):
+        raise OSError("[WinError 2] The system cannot find the file specified")
+
+    monkeypatch.setattr(css_module.subprocess, "run", fake_run)
+
+    css_module.install_tailwind(str(tmp_path))
+
+    out = capsys.readouterr().out
+    assert "npm could not be started" in out
+    assert "[WinError 2]" in out
+
 def test__append_tailwind_scripts_merges_scripts(tmp_path):
     project = tmp_path / "my_app"
     project.mkdir()
@@ -80,8 +118,6 @@ def test__append_tailwind_scripts_invalid_json(tmp_path):
     data = json.loads(package_json.read_text(encoding="utf-8"))
     assert "build:css" in data["scripts"]
     assert "watch:css" in data["scripts"]
-
-
 
 def test__append_tailwind_scripts_creates_package_json_when_missing(tmp_path):
     project = tmp_path / "my_app"
