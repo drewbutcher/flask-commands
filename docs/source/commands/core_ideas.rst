@@ -149,30 +149,6 @@ relationship is nested, I want the naming to read as nested too. That way when
 you come back to the project later, the structure mimics the data's
 relationship.
 
-Naming Conventions
-------------------
-
-.. youtube_embed:: naming-conventions
-
-Flask-Commands assumes a few conventions. They are simple, and they save you
-from surprises later.
-
-- **Views** use dotted names and follow plural resource naming (for example,
-  ``posts.comments.images.show`` or ``components.buttons``).
-- **Controllers** use PascalCase (Upper CamelCase) and are singular, ending in
-  ``Controller`` (for example, ``RecipeController``,
-  ``RecipeCommentController``, ``MainController``).
-- **Models** use PascalCase (Upper CamelCase) and are singular (for example,
-  ``Recipe``, ``Comment``, ``Image``).
-
-Here is the short version:
-
-- dots separate structure into segments
-- underscores keep multiple words together inside one segment
-- controllers end in ``Controller``
-- controllers and models are singular
-- views follow plural resource naming
-
 View Input Normalization
 ------------------------
 
@@ -299,18 +275,46 @@ is normalized to:
 
 That helps keep the generated structure consistent on disk.
 
-Wrap-Up
--------
+Naming Conventions
+------------------
+
+.. youtube_embed:: naming-conventions
+
+Flask-Commands assumes a few conventions. They are simple, and they save you
+from surprises later.
+
+- **Views** use dotted names and follow plural resource naming (for example,
+  ``posts.comments.images.show`` or ``components.buttons``).
+- **Controllers** use PascalCase (Upper CamelCase) and are singular, ending in
+  ``Controller`` (for example, ``RecipeController``,
+  ``RecipeCommentController``, ``MainController``).
+- **Models** use PascalCase (Upper CamelCase) and are singular (for example,
+  ``Recipe``, ``Comment``, ``Image``, ``CookStep``).
+
+Here is the short version:
+
+- dots separate structure into segments
+- underscores keep multiple words together inside one segment
+- views follow plural resource naming
+- controllers end in ``Controller``
+- controllers and models are singular
+
+
+What To Remember
+----------------
+
+.. youtube_embed:: what-to-remember
 
 These are the ideas that make the rest of Flask-Commands easier to understand:
 
 - ``make:*`` commands run from the project root where there must be an
   ``app/`` folder and a ``run.py`` file
-- views use dotted names and follow plural resource naming
-- controllers use PascalCase and end in ``Controller``
-- controllers and models use singular PascalCase names
 - for views dots separate structure into segments
 - for views underscores keep multiple words together inside one segment
+- views use dotted names and follow plural resource naming
+- controllers use PascalCase and end in ``Controller``
+- models use PascalCase
+- controllers and models use singular PascalCase names
 
 Now that the rules are clear, let’s use them in the simplest useful command:
 ``make:view``.

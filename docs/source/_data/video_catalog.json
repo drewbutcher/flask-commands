@@ -76,27 +76,32 @@
       "video_id": ""
     },
     "project-root-safety": {
-      "title": "Project-root safety",
+      "title": "Project-Root Safety",
       "description": "Learn why the generators only run inside a valid Flask-Commands project and how that safeguard helps prevent confusing writes in the wrong directory.",
       "video_id": ""
     },
     "restful-actions": {
-      "title": "RESTful actions",
+      "title": "RESTful Actions",
       "description": "Learn the RESTful action names the package leans on and why those names matter for predictable routes, controllers, and views.",
       "video_id": ""
     },
     "dot-notation": {
-      "title": "Dot notation",
+      "title": "Dot Notation",
       "description": "Learn how dotted input maps cleanly onto folders, route namespaces, and nested app structure as the project grows.",
       "video_id": ""
     },
     "naming-conventions": {
-      "title": "Naming conventions",
+      "title": "Naming Conventions",
       "description": "Learn the naming patterns the generators expect so your controllers, models, routes, and templates line up without extra translation work.",
       "video_id": ""
     },
+    "what-to-remember": {
+      "title": "What to Remember",
+      "description": "Learn the small set of rules to keep in mind before using the generators so project roots, dotted view names, resource naming, controllers, and models all feel predictable.",
+      "video_id": ""
+    },
     "view-input-normalization": {
-      "title": "Input normalization",
+      "title": "View Input Normalization",
       "description": "Learn how Flask-Commands cleans up and interprets your input before scaffolding so the commands feel forgiving without becoming mysterious.",
       "video_id": ""
     },
