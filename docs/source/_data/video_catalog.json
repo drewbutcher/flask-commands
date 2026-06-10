@@ -48,92 +48,92 @@
     "create-a-project-with-flask-new": {
       "title": "Create a project with flask new",
       "description": "Watch the first project scaffold come together so you can see the shape of the generated app before drilling into each file and folder in later chapters.",
-      "video_id": ""
+      "video_id": "VqI6N2szwG0"
     },
     "what-the-default-scaffold-gives-you": {
       "title": "What the default scaffold gives you",
       "description": "Learn what the default project structure includes out of the box so you know which files, folders, and moving parts Flask-Commands is creating for you.",
-      "video_id": ""
+      "video_id": "T5p1quhwKfQ"
     },
     "create-a-project-without-a-database": {
       "title": "Create a project without a database",
       "description": "Learn when the no-database project path is the better fit and what changes when you ask the scaffold to leave the database pieces out.",
-      "video_id": ""
+      "video_id": "F_sWqmK9CGM"
     },
     "run-the-new-project": {
       "title": "Run the new project",
       "description": "Watch the new project come to life so you can connect the generated files on disk to the running app in the browser.",
-      "video_id": ""
+      "video_id": "df0VTAjP6f0"
     },
     "use-flask-commands-inside-the-new-project": {
       "title": "Use Flask-Commands Inside the New Project",
       "description": "Learn how Flask-Commands behaves once a project virtual environment is active, and why using a separate terminal tab keeps app-running and file generation cleanly separated.",
-      "video_id": ""
+      "video_id": "HfhcL6RAbdw"
     },
     "alternative-manual-startup": {
       "title": "Alternative (Manual Startup)",
-        "description": "Learn how to start the generated project manually through its virtual environment when you are not using the helper script or are working outside macOS.",
-      "video_id": ""
+      "description": "Learn how to start the generated project manually through its virtual environment when you are not using the helper script or are working outside macOS.",
+      "video_id": "G_nkVpyO_Us"
     },
     "project-root-safety": {
       "title": "Project-Root Safety",
       "description": "Learn why the generators only run inside a valid Flask-Commands project and how that safeguard helps prevent confusing writes in the wrong directory.",
-      "video_id": ""
+      "video_id": "wa4MiQtGHgo"
     },
     "restful-actions": {
       "title": "RESTful Actions",
       "description": "Learn the RESTful action names the package leans on and why those names matter for predictable routes, controllers, and views.",
-      "video_id": ""
+      "video_id": "i73_eJSZS2I"
     },
     "dot-notation": {
       "title": "Dot Notation",
       "description": "Learn how dotted input maps cleanly onto folders, route namespaces, and nested app structure as the project grows.",
-      "video_id": ""
-    },
-    "naming-conventions": {
-      "title": "Naming Conventions",
-      "description": "Learn the naming patterns the generators expect so your controllers, models, routes, and templates line up without extra translation work.",
-      "video_id": ""
-    },
-    "what-to-remember": {
-      "title": "What to Remember",
-      "description": "Learn the small set of rules to keep in mind before using the generators so project roots, dotted view names, resource naming, controllers, and models all feel predictable.",
-      "video_id": ""
+      "video_id": "Xe4SZYpsd5Y"
     },
     "view-input-normalization": {
       "title": "View Input Normalization",
       "description": "Learn how Flask-Commands cleans up and interprets your input before scaffolding so the commands feel forgiving without becoming mysterious.",
-      "video_id": ""
+      "video_id": "H_6F2kRWoLk"
+    },
+    "naming-conventions": {
+      "title": "Naming Conventions",
+      "description": "Learn the naming patterns the generators expect so your controllers, models, routes, and templates line up without extra translation work.",
+      "video_id": "Uk3p7fiUnH0"
+    },
+    "what-to-remember": {
+      "title": "What to Remember",
+      "description": "Learn the small set of rules to keep in mind before using the generators so project roots, dotted view names, resource naming, controllers, and models all feel predictable.",
+      "video_id": "3x8YZc9kecs"
     },
     "into-to-flask-make-view": {
       "title": "Intro to flask make:view",
       "description": "Learn what `flask make:view` does in broad terms, why it is such a useful page-first starting point, and how the command can grow from a simple template into fuller application structure.",
-      "video_id": ""
+      "video_id": "ItZgMpGnwGw"
     },
     "create-a-simple-template-with-flask-make-view": {
       "title": "Create a simple template with flask make:view",
       "description": "Watch the smallest useful make:view example so you can see how fast the page-first workflow gets a template and route onto the screen.",
-      "video_id": ""
+      "video_id": "QsmlRyq0uEA"
     },
     "understand-the-mains-namespace": {
-      "title": "Understand the mains namespace",
+      "title": "Understand the mains Namespace",
       "description": "Learn what the mains namespace is doing for you and when it is perfectly reasonable to keep simple pages there on purpose.",
-      "video_id": ""
+      "video_id": "qYdyF5nTQio"
     },
     "wire-a-page-explicitly": {
       "title": "Wire a page explicitly",
       "description": "Learn how to create a page with clearer intent so the route, view file, and structure are obvious from the command you ran.",
-      "video_id": ""
+      "video_id": "D62dbHsPpZ4"
     },
     "use-generator-flags-with-make-view": {
       "title": "Use generator flags with make:view",
       "description": "Learn which flags add route, controller, and model wiring so you can choose the smallest or largest scaffold that fits the job.",
-      "video_id": ""
+      "video_id": "dUxxS7QH0wQ"
     },
     "use-mains-intentionally": {
       "title": "Use mains intentionally",
       "description": "Learn when staying in mains keeps the app simple and when that simplicity is a feature instead of a sign that you are doing something wrong.",
-      "video_id": ""
+      "video_id": "HDiQKVI48lc"
     },
     "a-quick-peek-at-nested-views": {
       "title": "A quick peek at nested views",
@@ -426,18 +426,18 @@
       "groups": [
         { "heading": "Welcome", "doc": "welcome", "video_keys": ["what-is-flask-commands", "what-flask-commands-is-not", "the-plain-recipe-app-we-are-building", "how-to-use-this-documentation"] },
         { "heading": "Install and First Run", "doc": "install_and_first_run", "video_keys": ["install-the-prerequisites-for-flask-commands", "install-flask-commands-with-pipx", "install-flask-commands-with-pip", "confirm-the-command-with-version", "read-the-cli-at-a-glance-with-help"] },
-        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project"] },
-        { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "naming-conventions", "view-input-normalization"] },
+        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
+        { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "view-input-normalization", "naming-conventions", "what-to-remember"] },
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
         { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
         { "heading": "Model Prompt for make:view", "doc": "commands/make_view/model_prompt", "video_keys": ["normalize-input-before-scaffolding", "understand-missing-model-prompts", "avoid-prompts-with-flags", "choose-between-route-model-and-m", "model-prompts-final-comment"] },
+        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view", "get-templates-vs-post-actions", "why-the-smarter-behavior-matters"] },
         { "heading": "Building the First Resource with make:view", "doc": "commands/make_view/building_the_first_resource", "video_keys": ["build-recipes-index-as-the-first-resource", "understand-what-rcm-created", "add-recipes-show-to-the-resource", "why-recipes-show-matters", "keep-the-templates-intentionally-plain", "with-two-commands-you-have-something-to-show"] },
-        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view"] },
         { "heading": "Nested Resources with make:view", "doc": "commands/make_view/nested_resources", "video_keys": ["build-recipes-comments-index", "add-recipes-comments-show", "go-three-levels-deep-with-images", "why-nesting-pays-off"] },
         { "heading": "flask make:controller", "doc": "commands/make_controller", "video_keys": ["intro-to-flask-make-controller"] },
         { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["create-a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
         { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship", "go-nested-with-make-controller-crud"] },
-        { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "build-nested-resources-one-level-at-a-time", "combine-namespaces-with-nested-model-generation"] },
+        { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "combine-namespaces-with-nested-model-generation", "build-nested-resources-one-level-at-a-time"] },
         { "heading": "flask make:model", "doc": "commands/make_model", "video_keys": ["intro-to-flask-make-model"] },
         { "heading": "The Basics of make:model", "doc": "commands/make_model/the_basics", "video_keys": ["make-a-basic-model", "what-the-model-includes", "edit-the-model-and-migrate-the-database", "create-update-and-delete-a-recipe"] },
         { "heading": "RESTful Resource with make:model", "doc": "commands/make_model/restful_resources", "video_keys": ["build-a-resource-with-make-model-crud"] },
@@ -448,13 +448,13 @@
       "groups": [
         { "heading": "Welcome", "doc": "welcome", "video_keys": ["what-is-flask-commands", "what-flask-commands-is-not", "the-plain-recipe-app-we-are-building", "how-to-use-this-documentation"] },
         { "heading": "Install and First Run", "doc": "install_and_first_run", "video_keys": ["install-the-prerequisites-for-flask-commands", "install-flask-commands-with-pipx", "install-flask-commands-with-pip", "confirm-the-command-with-version", "read-the-cli-at-a-glance-with-help"] },
-        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project"] },
-        { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "naming-conventions", "view-input-normalization"] }
+        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
+        { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "view-input-normalization", "naming-conventions", "what-to-remember"] }
       ]
     },
     "new_videos": {
       "groups": [
-        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project"] }
+        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] }
       ]
     },
     "make_view_videos": {
@@ -462,8 +462,8 @@
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
         { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
         { "heading": "Model Prompt for make:view", "doc": "commands/make_view/model_prompt", "video_keys": ["normalize-input-before-scaffolding", "understand-missing-model-prompts", "avoid-prompts-with-flags", "choose-between-route-model-and-m", "model-prompts-final-comment"] },
+        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view", "get-templates-vs-post-actions", "why-the-smarter-behavior-matters"] },
         { "heading": "Building the First Resource with make:view", "doc": "commands/make_view/building_the_first_resource", "video_keys": ["build-recipes-index-as-the-first-resource", "understand-what-rcm-created", "add-recipes-show-to-the-resource", "why-recipes-show-matters", "keep-the-templates-intentionally-plain", "with-two-commands-you-have-something-to-show"] },
-        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view"] },
         { "heading": "Nested Resources with make:view", "doc": "commands/make_view/nested_resources", "video_keys": ["build-recipes-comments-index", "add-recipes-comments-show", "go-three-levels-deep-with-images", "why-nesting-pays-off"] }
       ]
     },
@@ -472,7 +472,7 @@
         { "heading": "flask make:controller", "doc": "commands/make_controller", "video_keys": ["intro-to-flask-make-controller"] },
         { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["create-a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
         { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship", "go-nested-with-make-controller-crud"] },
-        { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "build-nested-resources-one-level-at-a-time", "combine-namespaces-with-nested-model-generation"] }
+        { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "combine-namespaces-with-nested-model-generation", "build-nested-resources-one-level-at-a-time"] }
       ]
     },
     "make_model_videos": {
