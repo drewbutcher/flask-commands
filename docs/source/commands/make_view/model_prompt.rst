@@ -61,8 +61,8 @@ Understand Missing-Model Prompts
 .. youtube_embed:: understand-missing-model-prompts
 
 When you use ``-r`` or ``--generate-route`` on a RESTful action,
-Flask-Commands looks at the last resource segment and checks whether it maps to
-a registered model.
+Flask-Commands looks at the segment immediately before the RESTful action and
+checks whether it maps to a registered model.
 
 If you are newer to web development, a **RESTful action** just means a common
 page pattern like:

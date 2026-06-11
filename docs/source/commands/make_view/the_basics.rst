@@ -269,9 +269,10 @@ These create:
 - ``app/templates/components/checkboxes.html``
 - ``app/templates/components/selects.html``
 
+
 Because we did not add any generator flags, these are just templates. That is
-usually exactly what you want for partials, macros, or little reusable
-building blocks.
+usually exactly what you want for Jinja macros, included templates, or little
+reusable building blocks.
 
 So before we ever get into nested resources like ``recipes.comments.index``,
 dot notation is already helping keep the template structure nice and tidy.
