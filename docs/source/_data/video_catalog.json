@@ -138,27 +138,27 @@
     "a-quick-peek-at-nested-views": {
       "title": "A quick peek at nested views",
       "description": "Watch the nested-view workflow at a high level so you can see how dot notation grows into folders and clearer page structure.",
-      "video_id": ""
+      "video_id": "FAj7mBM04sE"
     },
     "when-make-view-is-the-right-starting-point": {
       "title": "When make:view is the right starting point",
       "description": "Learn when the page-first workflow is the easiest way to start, especially when you want to see interface structure before deeper controller or model work.",
-      "video_id": ""
+      "video_id": "gwBi5jbuiY0"
     },
     "normalize-input-before-scaffolding": {
       "title": "Normalize input before scaffolding",
       "description": "Learn how the command cleans up dotted paths and action names before writing files so your intent survives small formatting differences.",
-      "video_id": ""
+      "video_id": "5Zg9qxkEyK0"
     },
     "understand-missing-model-prompts": {
       "title": "Understand missing-model prompts",
       "description": "Learn why Flask-Commands asks about models in some view workflows and what that prompt is trying to protect or accelerate.",
-      "video_id": ""
+      "video_id": "8TJe2e79hE4"
     },
     "avoid-prompts-with-flags": {
       "title": "Avoid prompts with flags",
       "description": "Learn how to steer the generator directly when you already know the route or model behavior you want and do not need interactive help.",
-      "video_id": ""
+      "video_id": "QN7aFmkeBos"
     },
     "choose-between-route-model-and-m": {
       "title": "Choose between --route, --model, and -m",
