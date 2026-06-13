@@ -36,9 +36,9 @@ The Plain Recipe App We Are Building
 
 .. youtube_embed:: the-plain-recipe-app-we-are-building
 
-Throughout this documentation we are going to build a small recipe app. It is
-not because recipes are magical. It is because recipes give us very believable
-relationships:
+Throughout this documentation we are going to build a small recipe app called
+``Cooker``. It is not because recipes are magical. It is because recipes give
+us very believable relationships:
 
 - recipes
 - comments

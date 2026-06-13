@@ -16,7 +16,9 @@ Build ``recipes.index``
 
 .. youtube_embed:: build-recipes-index-as-the-first-resource
 
-Let’s start by building the first real resource page for our recipe app:
+
+Let’s start by building the first real resource page for our recipe app,
+``cooker``:
 
 .. code-block:: bash
 

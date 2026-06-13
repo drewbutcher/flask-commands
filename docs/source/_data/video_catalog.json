@@ -163,12 +163,32 @@
     "choose-between-route-model-and-m": {
       "title": "Choose between --route, --model, and -m",
       "description": "Learn what each flag is responsible for so you can be more explicit about whether you are wiring routes, generating a model, or both.",
-      "video_id": ""
+      "video_id": "-nBnWHj5uQ8"
     },
     "model-prompts-final-comment": {
       "title": "Model Prompts Final Comment",
       "description": "Learn the design goal behind the make:view model prompts so the command feels helpful when you need guidance and quiet when you already know the answer.",
-      "video_id": ""
+      "video_id": "ASxK3u3uBeE"
+    },
+    "build-recipes-index-as-the-first-resource": {
+      "title": "Build recipes.index as the first resource",
+      "description": "Watch the first real resource come together so you can see routes, controllers, models, and templates start acting like one connected feature.",
+      "video_id": "4SgpG7SXYFI"
+    },
+    "understand-what-rcm-created": {
+      "title": "Understand what -rcm created",
+      "description": "Learn how to read the generated output from a combined scaffold command so you know exactly which files were created and why.",
+      "video_id": "sZs1vUsgShI"
+    },
+    "add-recipes-show-to-the-resource": {
+      "title": "Add recipes.show to the resource",
+      "description": "Watch the second RESTful page slot into the existing resource so you can feel how the structure starts paying off after the first scaffold.",
+      "video_id": "sn9PmmW4oNk"
+    },
+    "why-recipes-show-matters": {
+      "title": "Why recipes.show matters",
+      "description": "Learn why the show page is such an important step in making a resource feel real instead of just looking like a list on the screen.",
+      "video_id": "tbSOBlH3zOI"
     },
     "get-actions-render-pages": {
       "title": "Get Actions Render Pages",
@@ -210,26 +230,7 @@
       "description": "Learn how the newer scaffolding behavior reduces manual cleanup by making better guesses before it writes your files.",
       "video_id": ""
     },
-    "build-recipes-index-as-the-first-resource": {
-      "title": "Build recipes.index as the first resource",
-      "description": "Watch the first real resource come together so you can see routes, controllers, models, and templates start acting like one connected feature.",
-      "video_id": ""
-    },
-    "understand-what-rcm-created": {
-      "title": "Understand what -rcm created",
-      "description": "Learn how to read the generated output from a combined scaffold command so you know exactly which files were created and why.",
-      "video_id": ""
-    },
-    "add-recipes-show-to-the-resource": {
-      "title": "Add recipes.show to the resource",
-      "description": "Watch the second RESTful page slot into the existing resource so you can feel how the structure starts paying off after the first scaffold.",
-      "video_id": ""
-    },
-    "why-recipes-show-matters": {
-      "title": "Why recipes.show matters",
-      "description": "Learn why the show page is such an important step in making a resource feel real instead of just looking like a list on the screen.",
-      "video_id": ""
-    },
+
     "keep-the-templates-intentionally-plain": {
       "title": "Keep the templates intentionally plain",
       "description": "Learn why the docs keep the early templates visually simple so the real lesson stays on data shape, routing, and structure.",
