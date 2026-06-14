@@ -188,7 +188,17 @@
     "why-recipes-show-matters": {
       "title": "Why recipes.show matters",
       "description": "Learn why the show page is such an important step in making a resource feel real instead of just looking like a list on the screen.",
-      "video_id": "tbSOBlH3zOI"
+      "video_id": "nWiz-Zyy0JE"
+    },
+    "keep-the-templates-intentionally-plain": {
+      "title": "Keep the templates intentionally plain",
+      "description": "Learn why the docs keep the early templates visually simple so the real lesson stays on data shape, routing, and structure.",
+      "video_id": "ZweYl1IWqNE"
+    },
+    "with-two-commands-you-have-something-to-show": {
+      "title": "With Two Commands You Have Something To Show",
+      "description": "See how recipes.index and recipes.show give you the beginning of a real resource with list and detail pages connected to the generated structure.",
+      "video_id": "cCaKW1-KXQ0"
     },
     "get-actions-render-pages": {
       "title": "Get Actions Render Pages",
@@ -231,16 +241,7 @@
       "video_id": ""
     },
 
-    "keep-the-templates-intentionally-plain": {
-      "title": "Keep the templates intentionally plain",
-      "description": "Learn why the docs keep the early templates visually simple so the real lesson stays on data shape, routing, and structure.",
-      "video_id": ""
-    },
-    "with-two-commands-you-have-something-to-show": {
-      "title": "With Two Commands You Have Something To Show",
-      "description": "See how recipes.index and recipes.show give you the beginning of a real resource with list and detail pages connected to the generated structure.",
-      "video_id": ""
-    },
+
     "build-recipes-comments-index": {
       "title": "Build recipes.comments.index",
       "description": "Watch the first nested resource step appear under a parent so you can see how truthful dotted naming turns into working nested structure.",
