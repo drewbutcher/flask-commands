@@ -8,6 +8,13 @@ This project follows `Keep a Changelog <https://keepachangelog.com/>`_ and
 Unreleased
 ----------
 
+0.3.8 - 2026-06-15
+------------------
+Added
+~~~~~
+- Add a README quick video overview with a linked thumbnail image.
+- Add the overview video to the README docs quick links.
+
 0.3.7 - 2026-06-15
 ------------------
 Added
