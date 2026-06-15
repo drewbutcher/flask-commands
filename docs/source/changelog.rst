@@ -8,6 +8,32 @@ This project follows `Keep a Changelog <https://keepachangelog.com/>`_ and
 Unreleased
 ----------
 
+0.3.7 - 2026-06-15
+------------------
+Added
+~~~~~
+- Add YouTube video IDs and catalog metadata for the ``make:view`` documentation series.
+- Add a docs static YouTube banner image and refreshed README positioning copy.
+
+Changed
+~~~~~~~
+- Refine core ideas video sections, including naming convention examples and the summary guidance.
+- Reorder video catalog groups and entries to match the main tutorial sequence.
+- Clarify ``make:view`` model prompt behavior and template wording.
+- Update the first resource docs to use the Cooker example app.
+
+0.3.6 - 2026-06-08
+------------------
+Added
+~~~~~
+- Add no-database development and production config template overrides.
+- Add Starting a Project video embeds and catalog metadata.
+
+Changed
+~~~~~~~
+- Use the resolved ``npm`` executable path when installing Tailwind dependencies.
+- Improve Tailwind installation startup-error handling.
+
 0.3.5 - 2026-06-07
 ------------------
 Fixed
