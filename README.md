@@ -9,7 +9,11 @@
 [![license](https://img.shields.io/pypi/l/flask-commands.svg)](https://github.com/drewbutcher/flask-commands/blob/main/LICENSE)
 [![stars](https://img.shields.io/github/stars/drewbutcher/flask-commands)](https://github.com/drewbutcher/flask-commands/stargazers)
 
+**Scaffold Flask apps in seconds.**
+
 **Flask-Commands** is a local-first CLI that scaffolds Flask projects and automates the wiring between views, routes, controllers, and models so you ship faster with consistent structure.
+
+It removes repetitive setup work while keeping every generated file plain, local, and easy to edit.
 
 
 ## Getting Started
