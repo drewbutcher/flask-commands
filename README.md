@@ -15,6 +15,15 @@
 
 It removes repetitive setup work while keeping every generated file plain, local, and easy to edit.
 
+## Quick video overview
+
+New to Flask-Commands? Start with this short overview:
+
+[![What is Flask-Commands?](https://raw.githubusercontent.com/drewbutcher/flask-commands/main/docs/source/_static/readme-thumbnail.png)](https://youtu.be/lPvQmLLBcwA)
+
+**What is Flask-Commands?**
+
+A quick walkthrough showing how to create a Flask app, generate a CRUD resource, and run it in the browser.
 
 ## Getting Started
 
@@ -82,6 +91,7 @@ brew install fswatch
 
 ## Docs quick links
 
+- Quick video overview: https://youtu.be/lPvQmLLBcwA
 - Full guide: https://flask-commands.readthedocs.io/en/latest/docs.html
 - Install and first run: https://flask-commands.readthedocs.io/en/latest/install_and_first_run.html
 - Starting a project: https://flask-commands.readthedocs.io/en/latest/starting_a_project.html
