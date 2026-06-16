@@ -73,7 +73,7 @@ That means:
 are not really page-rendering actions.
 
 These actions are usually triggered by a form submission or some other user
-interaction that changes application state. They create, update, or delete some
+interaction that changes application state. They store, update, or delete some
 object in your database.
 
 Because of that, Flask-Commands does not generate a template file for these

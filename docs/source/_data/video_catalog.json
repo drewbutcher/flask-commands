@@ -201,12 +201,12 @@
       "video_id": "cCaKW1-KXQ0"
     },
     "get-actions-render-pages": {
-      "title": "Get Actions Render Pages",
+      "title": "GET Actions Render Pages",
       "description": "Learn why RESTful GET actions create templates, which actions belong in that group, and how Flask-Commands maps page-rendering behavior to files.",
-      "video_id": ""
+      "video_id": "6wp7ZfckRDE"
     },
     "post-actions-change-state": {
-      "title": "Post Actions Change State",
+      "title": "POST Actions Change State",
       "description": "Learn why POST-style RESTful actions change application state instead of rendering their own templates, and why redirects are the right generated behavior.",
       "video_id": ""
     },
