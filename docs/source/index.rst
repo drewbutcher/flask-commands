@@ -67,7 +67,7 @@
                 <a href="https://pypi.org/project/flask-commands/"><img src="https://img.shields.io/pypi/v/flask-commands.svg?cacheSeconds=300" alt="PyPI version badge" /></a>
                 <a href="https://github.com/drewbutcher/flask-commands/actions"><img src="https://img.shields.io/github/actions/workflow/status/drewbutcher/flask-commands/tests.yml?branch=main" alt="Build status badge" /></a>
                 <a href="https://codecov.io/gh/drewbutcher/flask-commands"><img src="https://codecov.io/gh/drewbutcher/flask-commands/branch/main/graph/badge.svg" alt="Coverage badge" /></a>
-                <a href="https://flask-commands.readthedocs.io/"><img src="https://img.shields.io/readthedocs/flask-commands/latest" alt="Docs badge" /></a>
+                <a href="https://flask-commands.readthedocs.io/en/latest/?badge=latest"><img src="https://readthedocs.org/projects/flask-commands/badge/?version=latest" alt="Documentation Status" /></a>
                 <a href="https://github.com/drewbutcher/flask-commands/blob/main/LICENSE"><img src="https://img.shields.io/pypi/l/flask-commands.svg" alt="License badge" /></a>
                 <a href="https://github.com/drewbutcher/flask-commands/stargazers"><img src="https://img.shields.io/github/stars/drewbutcher/flask-commands" alt="GitHub stars badge" /></a>
             </div>

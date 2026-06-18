@@ -208,27 +208,27 @@
     "post-actions-change-state": {
       "title": "POST Actions Change State",
       "description": "Learn why POST-style RESTful actions change application state instead of rendering their own templates, and why redirects are the right generated behavior.",
-      "video_id": ""
+      "video_id": "1gsfwA2pGEE"
     },
     "the-browser-flow": {
       "title": "The Browser Flow",
       "description": "See the normal GET, POST, redirect loop that connects form pages, submissions, and follow-up pages in a traditional Flask browser workflow.",
-      "video_id": ""
+      "video_id": "8r-KcK2Aub4"
     },
     "a-real-example-with-recipes-create-and-recipes-store": {
       "title": "A Real Example With Recipes Create And Recipe Store",
       "description": "Walk through recipes.create and recipes.store as a paired example so the difference between showing a form and processing that form becomes concrete.",
-      "video_id": ""
+      "video_id": "QIM3tva-Jww"
     },
     "no-template-for-post-actions": {
-      "title": "No Template For Post Actions",
+      "title": "No Template For POST Actions",
       "description": "Learn why commands such as recipes.store generate route and controller wiring without creating a template file, and why that is intentional.",
-      "video_id": ""
+      "video_id": "QRRF1cyl0DU"
     },
     "what-get-vs-post-means-when-using-make-view": {
-      "title": "What Get vs Post Means When Using Make View",
+      "title": "What GET vs POST Means When Using Make View",
       "description": "Learn how to predict make:view output by asking whether the action should display a page or process submitted data and redirect.",
-      "video_id": ""
+      "video_id": "eXddRuyJZSA"
     },
     "get-templates-vs-post-actions": {
       "title": "GET templates vs POST actions",

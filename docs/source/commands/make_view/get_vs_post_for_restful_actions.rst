@@ -206,7 +206,7 @@ generated the parts that actually belong to that action:
 In other words, no template was generated because no template was supposed to
 exist for that action in the first place.
 
-What GET vs Post Means When Using ``make:view``
+What GET vs POST Means When Using ``make:view``
 -----------------------------------------------
 
 .. youtube_embed:: what-get-vs-post-means-when-using-make-view
