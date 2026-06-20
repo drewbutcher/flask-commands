@@ -159,7 +159,7 @@ would have had to type the seven commands below to end up with the same result.
 
 .. code-block:: bash
 
-   flask make:view recipes.index -rc
+   flask make:view recipes.index -rcm
    flask make:view recipes.show -rc
    flask make:view recipes.create -rc
    flask make:view recipes.store -rc

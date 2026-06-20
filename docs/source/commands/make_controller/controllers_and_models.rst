@@ -54,9 +54,9 @@ The most direct method is to explicitly name the model using ``--model``:
 
    flask make:controller RecipeController --model Recipe
 
-With ``--model``, you choose the exact model name. Flask-Commands does
-not do any model-name generation from the controller name. Instead,
-Flask-Commands uses the exact model name you provided.  If you prefer
+With ``--model``, you choose the exact model name. Instead of asking
+Flask-Commands to generate the model name from the controller name you are
+explicitly tell Flask-Commands the model name.  If you prefer
 plural model names then this is your opportunity to make your model plural
 with ``--model Recipes``.
 
@@ -173,7 +173,7 @@ can generate the model name without drama 🎭. ``RecipeController`` points to a
 ``Recipe`` model, and the routes point to the ``recipes`` resource.
 
 The Naming Problem
-^^^^^^^^^^^^^^^^^^
+------------------
 
 .. youtube_embed:: the-naming-problem
 
@@ -194,7 +194,7 @@ naming convention so we can separate the following three ideas 💡:
 .. _single-data-structures-that-are-multiple-words:
 
 Single Data Structures that are Multiple Words
-----------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. youtube_embed:: single-data-structures-that-are-multiple-words
 
@@ -260,13 +260,13 @@ instead of something nested like
 
 - ``/shopping/lists/<int:list_id>``.
 
-The same idea applies to other multi-word data structures like ``UserProfile``,
-``PasswordReset``, or ``MealPlan``.  In fact you can use as many words as you
-like to describe your data structure; just make sure to tell Flask-Commands
-with the ``--model`` option.  You will end up with a controller name that
-has multiple words but still describes a single data structure.  Don't worry,
-you will still understand what's going on in the application six months from
-now when you look in your models directory and see the multi-word model.
+The same idea applies to other multi-word data structures like ``MealPlan``.
+In fact you can use as many words as you like to describe your data structure;
+just make sure to tell Flask-Commands with the ``--model`` option.  This way
+you will end up with a controller name that has multiple words but still
+describes a single data structure.  Hopefully, seeing this structure scaffold
+out in your file system will be a big help to future you when you have not
+looked at the application for over six months.
 
 In the next section we will look at a multi-word controller where the first
 word is not part of the model name.  Instead we want to organize our
@@ -275,7 +275,7 @@ want an ``Admin`` section in the application but we do not want to create an
 ``Admin`` model.
 
 When To Namespace
------------------
+^^^^^^^^^^^^^^^^^
 
 .. youtube_embed:: when-to-namespace
 
@@ -338,7 +338,7 @@ segment that is not a registered model.
 .. _make-controller-multi-word-namespaces:
 
 Multi-Word Namespaces
-^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""
 
 .. youtube_embed:: multi-word-namespaces
 
@@ -385,7 +385,7 @@ the recipe routes.
 .. _make-controller-public-pages-and-private-tools:
 
 Public Pages and Private Tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""
 
 .. youtube_embed:: public-pages-and-private-tools
 
@@ -440,7 +440,7 @@ segment that is a registered model. So without further ado, let's look at
 that parent-child relationship next.
 
 Naming Nested Controllers by Relationship
------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. youtube_embed:: naming-nested-controllers-by-relationship
 
@@ -507,7 +507,7 @@ the parent structure.  The above routes are called with the following commands:
    url_for('recipes.ingredients.show', recipe_id=1, ingredient_id=2)
 
 Go Nested with ``--crud``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""
 
 .. youtube_embed:: go-nested-with-make-controller-crud
 

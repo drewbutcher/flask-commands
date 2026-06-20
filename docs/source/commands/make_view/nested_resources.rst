@@ -31,7 +31,7 @@ Build ``recipes.comments.index``
 
 .. youtube_embed:: build-recipes-comments-index
 
-Let’s continue with our cooking app and suppose we are going to allow users to
+Let’s return to our cooking app, cooker.  Suppose we want to allow users to
 leave comments on recipes.
 
 That means we now have a parent-child relationship:

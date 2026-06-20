@@ -68,7 +68,7 @@ html_theme_options = {
     "collapse_navigation": False,
     "navigation_depth": 4,
     "show_nav_level": 1,
-    "show_toc_level": 2,
+    "show_toc_level": 3,
     "back_to_top_button": True,
 
     # Header layout
@@ -136,7 +136,7 @@ document.head.appendChild(style);
 """,
         priority=700,
     )
-    
+
     app.add_js_file(
         None,
         body="""
