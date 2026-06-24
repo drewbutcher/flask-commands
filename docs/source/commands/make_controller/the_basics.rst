@@ -20,7 +20,7 @@ the part of the app where request behavior starts to come to life 🐣.
 A Simple Controller
 -------------------
 
-.. youtube_embed:: create-a-simple-controller
+.. youtube_embed:: a-simple-controller
 
 Use ``flask make:controller`` to scaffold a controller class under
 ``app/controllers/`` and register it in ``app/controllers/__init__.py``.

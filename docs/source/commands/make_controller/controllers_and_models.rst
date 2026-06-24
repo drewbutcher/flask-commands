@@ -358,7 +358,7 @@ just need a section of the app where certain users can manage recipes.
 
    .. code-block:: bash
 
-      flask make:controller RecipeController --crud -m
+      flask make:view recipes.index -rcm
 
 Once ``Recipe`` exists, you can type:
 
@@ -507,7 +507,7 @@ the parent structure.  The above routes are called with the following commands:
    url_for('recipes.ingredients.show', recipe_id=1, ingredient_id=2)
 
 Go Nested with ``--crud``
-""""""""""""""""""""""""
+"""""""""""""""""""""""""
 
 .. youtube_embed:: go-nested-with-make-controller-crud
 

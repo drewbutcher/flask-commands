@@ -230,107 +230,95 @@
       "description": "Learn how to predict make:view output by asking whether the action should display a page or process submitted data and redirect.",
       "video_id": "eXddRuyJZSA"
     },
-    "get-templates-vs-post-actions": {
-      "title": "GET templates vs POST actions",
-      "description": "Learn why some actions produce templates and others do not, and how that distinction keeps the generated files honest to HTTP behavior.",
-      "video_id": ""
-    },
-    "why-the-smarter-behavior-matters": {
-      "title": "Why the smarter behavior matters",
-      "description": "Learn how the newer scaffolding behavior reduces manual cleanup by making better guesses before it writes your files.",
-      "video_id": ""
-    },
-
-
     "build-recipes-comments-index": {
       "title": "Build recipes.comments.index",
       "description": "Watch the first nested resource step appear under a parent so you can see how truthful dotted naming turns into working nested structure.",
-      "video_id": ""
+      "video_id": "jyL5IjgU-Qs"
     },
     "add-recipes-comments-show": {
       "title": "Add recipes.comments.show",
       "description": "Learn how a nested show page fits beside a nested index page and why that symmetry helps the structure stay understandable.",
-      "video_id": ""
+      "video_id": "RSgK2RVgWis"
     },
     "go-three-levels-deep-with-images": {
       "title": "Go three levels deep with images",
       "description": "Watch the nesting go one level further so you can see how the package handles deeper relationships without hiding what is happening.",
-      "video_id": ""
+      "video_id": "O_GTXSdGkYE"
     },
     "why-nesting-pays-off": {
       "title": "Why Nesting Pays Off",
       "description": "Learn how a few nested make:view commands create relationship-aware routes, controllers, templates, and endpoint names that stay readable as the app grows.",
-      "video_id": ""
+      "video_id": "QTa6Yg_BgXw"
     },
     "intro-to-flask-make-controller": {
       "title": "Intro To Flask Make Controller",
       "description": "Learn when it makes sense to start from controller behavior and how make:controller helps scaffold the layer that coordinates routes, templates, and models.",
-      "video_id": ""
+      "video_id": "2D3nXYS0G5o"
     },
-    "create-a-simple-controller": {
-      "title": "Create a simple controller",
+    "a-simple-controller": {
+      "title": "A simple controller",
       "description": "Learn how to start with the controller layer directly when the behavior feels clearer than the page or model structure at the beginning.",
-      "video_id": ""
+      "video_id": "HeZVabagkZw"
     },
     "add-restful-actions-with-crud": {
       "title": "Add RESTful actions with --crud",
       "description": "Learn how the controller generator expands into a full RESTful action set so you can scaffold behavior in one pass instead of method by method.",
-      "video_id": ""
+      "video_id": "UajfGk287-Y"
     },
     "why-crud-feels-like-a-big-deal": {
       "title": "Why --crud Feels Like A Big Deal",
       "description": "Learn why the --crud flag is such a useful jump in scaffolding power when you want the full RESTful controller, route, and template shape at once.",
-      "video_id": ""
+      "video_id": "CmuyT9M5HPc"
     },
     "add-a-model-with-model-or-m": {
       "title": "Add a model with --model or -m",
       "description": "Learn the difference between the explicit long flag and the shorthand model-generation path so the command does exactly what you intend.",
-      "video_id": ""
+      "video_id": "2DlIyYbRnh0"
     },
     "name-the-model-directly": {
       "title": "Name the Model Directly",
       "description": "Learn how --model lets you choose the exact model name instead of asking Flask-Commands to infer one from the controller name.",
-      "video_id": ""
+      "video_id": "mNW_TY06xKg"
     },
     "generate-the-model-name": {
       "title": "Generate the Model Name",
       "description": "Learn how -m asks Flask-Commands to generate a model name from the controller name and when that shorthand is clear enough to use.",
-      "video_id": ""
+      "video_id": "zhkXwNdOYAE"
     },
     "why-both-options-matter": {
       "title": "Why Both Options Matter",
       "description": "Learn why explicit model naming and generated model naming both matter once controller names start carrying namespaces, multi-word models, or relationships.",
-      "video_id": ""
+      "video_id": "eXZqKGSaC2k"
     },
     "generating-a-restful-controller-with-a-model": {
       "title": "Generating a RESTful Controller with a Model",
       "description": "Watch --crud and -m work together to create a RESTful controller, routes, templates, and a registered model from one controller-first command.",
-      "video_id": ""
+      "video_id": "FQU7oZo-lPU"
     },
     "the-naming-problem": {
       "title": "The Naming Problem",
       "description": "Learn the three naming stories Flask-Commands has to separate: one multi-word data structure, a namespace, and a nested resource relationship.",
-      "video_id": ""
+      "video_id": "6Ql9_qx7qgY"
     },
     "single-data-structures-that-are-multiple-words": {
       "title": "Single Data Structures that are Multiple Words",
       "description": "Learn how to keep names like ShoppingList together as one model-backed resource instead of accidentally turning the words into nested structure.",
-      "video_id": ""
+      "video_id": "lKvSZCJYNMs"
     },
     "when-to-namespace": {
       "title": "When to Namespace",
       "description": "Learn when a leading name segment is better understood as an organizing namespace rather than a model or parent resource.",
-      "video_id": ""
+      "video_id": "SQXh1OFU1HE"
     },
     "multi-word-namespaces": {
       "title": "Multi-Word Namespaces",
       "description": "Learn how multi-word namespaces map to route packages, endpoint names, and URLs while staying separate from the model name itself.",
-      "video_id": ""
+      "video_id": "kO5cNpQMcDU"
     },
     "public-pages-and-private-tools": {
       "title": "Public Pages and Private Tools",
       "description": "Learn how namespaces can separate public resource pages from private tool surfaces that manage the same underlying model.",
-      "video_id": ""
+      "video_id": "9d_e5yh6lzg"
     },
     "naming-nested-controllers-by-relationship": {
       "title": "Naming Nested Controllers by Relationship",
@@ -433,11 +421,11 @@
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
         { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
         { "heading": "Model Prompt for make:view", "doc": "commands/make_view/model_prompt", "video_keys": ["normalize-input-before-scaffolding", "understand-missing-model-prompts", "avoid-prompts-with-flags", "choose-between-route-model-and-m", "model-prompts-final-comment"] },
-        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view", "get-templates-vs-post-actions", "why-the-smarter-behavior-matters"] },
+        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view"] },
         { "heading": "Building the First Resource with make:view", "doc": "commands/make_view/building_the_first_resource", "video_keys": ["build-recipes-index-as-the-first-resource", "understand-what-rcm-created", "add-recipes-show-to-the-resource", "why-recipes-show-matters", "keep-the-templates-intentionally-plain", "with-two-commands-you-have-something-to-show"] },
         { "heading": "Nested Resources with make:view", "doc": "commands/make_view/nested_resources", "video_keys": ["build-recipes-comments-index", "add-recipes-comments-show", "go-three-levels-deep-with-images", "why-nesting-pays-off"] },
         { "heading": "flask make:controller", "doc": "commands/make_controller", "video_keys": ["intro-to-flask-make-controller"] },
-        { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["create-a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
+        { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
         { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship", "go-nested-with-make-controller-crud"] },
         { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "combine-namespaces-with-nested-model-generation", "build-nested-resources-one-level-at-a-time"] },
         { "heading": "flask make:model", "doc": "commands/make_model", "video_keys": ["intro-to-flask-make-model"] },
@@ -464,7 +452,7 @@
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
         { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
         { "heading": "Model Prompt for make:view", "doc": "commands/make_view/model_prompt", "video_keys": ["normalize-input-before-scaffolding", "understand-missing-model-prompts", "avoid-prompts-with-flags", "choose-between-route-model-and-m", "model-prompts-final-comment"] },
-        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view", "get-templates-vs-post-actions", "why-the-smarter-behavior-matters"] },
+        { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view"] },
         { "heading": "Building the First Resource with make:view", "doc": "commands/make_view/building_the_first_resource", "video_keys": ["build-recipes-index-as-the-first-resource", "understand-what-rcm-created", "add-recipes-show-to-the-resource", "why-recipes-show-matters", "keep-the-templates-intentionally-plain", "with-two-commands-you-have-something-to-show"] },
         { "heading": "Nested Resources with make:view", "doc": "commands/make_view/nested_resources", "video_keys": ["build-recipes-comments-index", "add-recipes-comments-show", "go-three-levels-deep-with-images", "why-nesting-pays-off"] }
       ]
@@ -472,7 +460,7 @@
     "make_controller_videos": {
       "groups": [
         { "heading": "flask make:controller", "doc": "commands/make_controller", "video_keys": ["intro-to-flask-make-controller"] },
-        { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["create-a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
+        { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
         { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship", "go-nested-with-make-controller-crud"] },
         { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "combine-namespaces-with-nested-model-generation", "build-nested-resources-one-level-at-a-time"] }
       ]
