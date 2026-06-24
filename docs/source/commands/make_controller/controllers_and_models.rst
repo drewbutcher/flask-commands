@@ -445,7 +445,7 @@ Naming Nested Controllers by Relationship
 .. youtube_embed:: naming-nested-controllers-by-relationship
 
 Suppose our cooking app needs a new data structure, ``Ingredient``.  For
-those following along I can hear the shouts of hurray 🥳 as everyone is glad I
+those following along, I can hear the shouts of hurray 🥳 as everyone is glad I
 didn't say ``Recipe`` again 🤪.
 
 While we want an ``Ingredient`` data structure we don't want a random resource
@@ -458,62 +458,8 @@ To show this relationship in diagram form one often writes:
 
 .. centered:: **Recipe -> Ingredient**.
 
-This is where nesting comes into play.  A nested controller name should read
-from parent to child.
+Now let's take this relationship and put it into action in our application.
 
-``RecipeIngredientController`` means:
-
-- ``Recipe`` is the parent data structure
-- ``Ingredient`` is the child data structure
-- ``Controller`` tells Flask-Commands this is a controller class
-
-The important rule here is:
-
- Flask-Commands treats a leading segment as a parent resource when that
- segment matches a registered model.
-
-Because ``Recipe`` is registered, Flask-Commands reads
-``RecipeIngredientController`` as we described above:
-
-- parent resource: ``Recipe``
-- child resource: ``Ingredient``
-
-That is what lets Flask-Commands generate nested routes like:
-
-- ``/recipes/<int:recipe_id>/ingredients``
-
-That naming gives Flask-Commands enough structure to build folders, routes,
-templates, and endpoint names that tell the same story.
-
-- controller file: ``app/controllers/recipe_ingredient_controller.py``
-- route package: ``app/routes/recipes/ingredients/``
-- template folder: ``app/templates/recipes/ingredients/``
-- URL shape: ``/recipes/<int:recipe_id>/ingredients``
-- endpoint name: ``recipes.ingredients.index``
-
-The endpoint name tells Flask which nested route you want, and the
-``recipe_id`` tells Flask which parent recipe the ingredient route belongs to:
-
-
-- ``/recipes/<int:recipe_id>/ingredients`` (index route)
-- ``/recipes/<int:recipe_id>/ingredients/<int:ingredient_id>`` (show route)
-
-So instead of a flat endpoint name, you preserve the nesting and references to
-the parent structure.  The above routes are called with the following commands:
-
-.. code-block:: python
-
-   url_for('recipes.ingredients.index', recipe_id=1)
-   url_for('recipes.ingredients.show', recipe_id=1, ingredient_id=2)
-
-Go Nested with ``--crud``
-"""""""""""""""""""""""""
-
-.. youtube_embed:: go-nested-with-make-controller-crud
-
-After a lot of buildup, let's now build the nested relationship we
-just discussed **Recipe -> Ingredient** with RESTful scaffolding in the
-controller.
 
 .. admonition:: Before you run this
 
@@ -538,7 +484,46 @@ is a model and we type:
 we end up with the nested resource structure described above. Because
 ``Recipe`` is a registered model, Flask-Commands treats it as the parent
 resource. Because we passed ``--crud``, the final segment, ``Ingredient``,
-becomes the RESTful child resource.
+becomes the RESTful child resource.  In other words,  Flask-Commands reads
+``RecipeIngredientController`` from parent to child like this:
+
+- ``Recipe`` is the parent data structure
+- ``Ingredient`` is the child data structure
+- ``Controller`` tells Flask-Commands this is a controller class
+
+The important rule here is:
+
+ Flask-Commands treats a leading segment as a parent resource when that
+ segment matches a registered model.
+
+Because ``Recipe`` is registered, Flask-Commands recognizes it as the parent
+instead of treating it as a namespace. Because we passed ``--crud``, the final
+segment, ``Ingredient``, becomes the RESTful child resource.
+
+That naming gives Flask-Commands enough structure to build folders, routes,
+templates, and endpoint names that show this parent child relationship
+throughout your project.
+
+- controller file: ``app/controllers/recipe_ingredient_controller.py``
+- route package: ``app/routes/recipes/ingredients/``
+- template folder: ``app/templates/recipes/ingredients/``
+- URL shape: ``/recipes/<int:recipe_id>/ingredients``
+- endpoint name: ``recipes.ingredients.index``
+
+The endpoint name tells Flask which nested route you want, and the
+``recipe_id`` tells Flask which parent recipe the ingredient route belongs to:
+
+
+- ``/recipes/<int:recipe_id>/ingredients`` (index route)
+- ``/recipes/<int:recipe_id>/ingredients/<int:ingredient_id>`` (show route)
+
+So instead of a flat endpoint name, you preserve the nesting and references to
+the parent structure.  The above routes are called with the following commands:
+
+.. code-block:: python
+
+   url_for('recipes.ingredients.index', recipe_id=1)
+   url_for('recipes.ingredients.show', recipe_id=1, ingredient_id=2)
 
 Notice that we did not include ``-m`` or ``--model``. Our command builds out the
 nested controller, routes, and templates, but it does not generate or register

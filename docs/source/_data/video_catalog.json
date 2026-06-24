@@ -325,11 +325,6 @@
       "description": "Learn how nested controller names describe parent-child relationships and how that relationship appears in generated routes and folders.",
       "video_id": ""
     },
-    "go-nested-with-make-controller-crud": {
-      "title": "Go nested with make:controller --crud",
-      "description": "Learn how the controller-first workflow behaves when the resource is nested and how that changes the generated routes, files, and prompts.",
-      "video_id": ""
-    },
     "flat-or-nest-with-the-m-option": {
       "title": "Flat or Nest with the ``-m`` Option",
       "description": "Learn what the structure choice means inside the controller-first workflow so you can pick the layout that matches your app instead of accepting a default blindly.",
@@ -426,7 +421,7 @@
         { "heading": "Nested Resources with make:view", "doc": "commands/make_view/nested_resources", "video_keys": ["build-recipes-comments-index", "add-recipes-comments-show", "go-three-levels-deep-with-images", "why-nesting-pays-off"] },
         { "heading": "flask make:controller", "doc": "commands/make_controller", "video_keys": ["intro-to-flask-make-controller"] },
         { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
-        { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship", "go-nested-with-make-controller-crud"] },
+        { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship"] },
         { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "combine-namespaces-with-nested-model-generation", "build-nested-resources-one-level-at-a-time"] },
         { "heading": "flask make:model", "doc": "commands/make_model", "video_keys": ["intro-to-flask-make-model"] },
         { "heading": "The Basics of make:model", "doc": "commands/make_model/the_basics", "video_keys": ["make-a-basic-model", "what-the-model-includes", "edit-the-model-and-migrate-the-database", "create-update-and-delete-a-recipe"] },
@@ -461,7 +456,7 @@
       "groups": [
         { "heading": "flask make:controller", "doc": "commands/make_controller", "video_keys": ["intro-to-flask-make-controller"] },
         { "heading": "The Basics of make:controller", "doc": "commands/make_controller/the_basics", "video_keys": ["a-simple-controller", "add-restful-actions-with-crud", "why-crud-feels-like-a-big-deal"] },
-        { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship", "go-nested-with-make-controller-crud"] },
+        { "heading": "Controllers and Models with make:controller", "doc": "commands/make_controller/controllers_and_models", "video_keys": ["add-a-model-with-model-or-m", "name-the-model-directly", "generate-the-model-name", "why-both-options-matter", "generating-a-restful-controller-with-a-model", "the-naming-problem", "single-data-structures-that-are-multiple-words", "when-to-namespace", "multi-word-namespaces", "public-pages-and-private-tools", "naming-nested-controllers-by-relationship"] },
         { "heading": "Flat vs Nested with make:controller", "doc": "commands/make_controller/flat_vs_nested", "video_keys": ["flat-or-nest-with-the-m-option", "choose-flat-for-one-multi-word-model", "combine-namespaces-with-nested-model-generation", "build-nested-resources-one-level-at-a-time"] }
       ]
     },
