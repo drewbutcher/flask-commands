@@ -8,6 +8,15 @@ This project follows `Keep a Changelog <https://keepachangelog.com/>`_ and
 Unreleased
 ----------
 
+0.3.9 - 2026-06-28
+------------------
+Changed
+~~~~~~~
+- Add ``make:controller`` video IDs and refresh video catalog metadata for the docs.
+- Consolidate nested CRUD guidance and refine controller naming documentation.
+- Clarify ``make:model`` setup wording and update the recipe migration command example.
+- Refresh documentation badges and related docs configuration.
+
 0.3.8 - 2026-06-15
 ------------------
 Added
