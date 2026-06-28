@@ -33,8 +33,8 @@ this command:
    If you have been following this documentation from the beginning, you already
    created a ``Recipe`` model earlier.  We did this either with
    ``flask make:view recipes.index -rcm`` or
-   ``flask make:controller RecipeController --crud -m``.  Because of this you are
-   receiving a warning in the terminal saying that the ``Recipe`` model already
+   ``flask make:controller RecipeController --crud -m``.  Because of this you will
+   receive a warning in the terminal saying that the ``Recipe`` model already
    exists.
 
    .. rst-class:: terminal-warning
@@ -214,7 +214,7 @@ following terminal commands:
 
 .. code-block:: bash
 
-   flask db migrate -m "Add name to recipe"
+   flask db migrate -m "create recipes table"
    flask db upgrade
 
 That is the Flask-Migrate part of the workflow, and it is one of the reasons I
