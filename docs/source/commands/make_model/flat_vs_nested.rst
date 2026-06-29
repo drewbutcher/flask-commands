@@ -29,12 +29,10 @@ Choose Flat or Nested with ``--crud``
 
 In the prior chapter we saw that adding ``--crud`` to ``make:model``
 instructs Flask-Commands to build the model and wire RESTful scaffolding
-around it.
-
-In the last chapter you saw this with a simple one-word model, ``Recipe``.  In
-that case, there is only one structure choice. When you provide ``make:model``
-with a multi-word segment, we introduce a bit of ambiguity as we will see in
-this section.
+around it.  The example of the last chapter, was however a simple one-word
+model, ``Recipe``.  In that case, there is only one structure choice. When
+you provide ``make:model`` with a multi-word segment, we introduce a bit
+of ambiguity as we will see in this section.
 
 If you are following this tutorial from the controller chapters, this
 section will feel familiar as it mirrors the :ref:`Flat or Nest with the -m Option<flat-or-nest-with-the-m-option>`

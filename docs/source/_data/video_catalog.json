@@ -323,7 +323,7 @@
     "naming-nested-controllers-by-relationship": {
       "title": "Naming Nested Controllers by Relationship",
       "description": "Learn how nested controller names describe parent-child relationships and how that relationship appears in generated routes and folders.",
-      "video_id": ""
+      "video_id": "hLD_vv3fv_g"
     },
     "flat-or-nest-with-the-m-option": {
       "title": "Flat or Nest with the ``-m`` Option",
@@ -370,7 +370,7 @@
       "description": "Learn how to use the generated model methods in a Flask shell to create, update, and delete recipe records after the database schema is ready.",
       "video_id": ""
     },
-    "build-a-resource-with-make-model-crud": {
+    "build-a-resource-with-make-model-and-crud": {
       "title": "Build a resource with make:model --crud",
       "description": "Learn how a model-first command can expand outward into a fuller resource by generating the controller, routes, and templates around the data structure.",
       "video_id": ""

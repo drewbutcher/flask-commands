@@ -21,10 +21,10 @@ Otherwise, the model is shouting with a megaphone 📣 saying, "Hey, is there
 anyone out there? I'm ready to CRUD."  That is why I decided to bring back
 our controller option ``--crud`` in this new ``make:model`` section.
 
-Build a Resource with ``--crud``
---------------------------------
+Build a Resource with  ``make:model`` & ``--crud``
+--------------------------------------------------
 
-.. youtube_embed:: build-a-resource-with-make-model-crud
+.. youtube_embed:: build-a-resource-with-make-model-and-crud
 
 In the event that you want to build a new model structure and you already know
 that you are going to need the full RESTful resource structure, you can just
