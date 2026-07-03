@@ -162,8 +162,9 @@ Flask-Commands also builds out the missing parent models, in addition to the
 child model, ``Ingredient``.  While this is helpful, it leaves the parent
 resource without RESTful routes because the RESTful scaffolding is only
 applied to the child model.  In order for ``Recipe`` to also have all the
-RESTful routes you would need to run ``make:model`` on ``Recipe`` first before
-running ``make:model`` on the combined ``RecipeIngredient``.
+RESTful routes you would need to run ``make:model`` on ``Recipe`` with
+``--crud`` first before running ``make:model`` on the combined
+``RecipeIngredient`` with ``--crud``.
 
 .. admonition:: Why do we need to nest?
 
@@ -340,3 +341,12 @@ So the pattern is:
    Build the structure from the top down. Use ``make:controller`` for the
    namespace surface, then return to ``make:model --crud --nest`` when you are
    ready to add one additional child at a time.
+
+To wrap everything up, I finished out the Cooker application as promised
+throughout the video series. Flask-Commands gets the wiring in place quickly;
+the longer work is shaping the controllers, templates, and models. This is
+where the scaffold starts becoming the application you actually want. If you
+want to see this process in detail, check out the video below where I
+meticulously walk through the rest of the Cooker app.
+
+.. youtube_embed:: finishing-out-cooker
