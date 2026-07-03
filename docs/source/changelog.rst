@@ -8,6 +8,21 @@ This project follows `Keep a Changelog <https://keepachangelog.com/>`_ and
 Unreleased
 ----------
 
+0.3.10 - 2026-07-03
+-------------------
+Added
+~~~~~
+- Add YouTube video IDs for the ``make:model`` documentation series and
+  ``make:controller`` flat/nested videos.
+- Add the finishing Cooker walkthrough video to the ``make:model`` flat/nested
+  documentation.
+
+Changed
+~~~~~~~
+- Correct ``make:model --crud`` video catalog references and ordering.
+- Clarify that nested ``make:model`` resources need ``--crud`` on both the
+  parent and child commands when both should have RESTful routes.
+
 0.3.9 - 2026-06-28
 ------------------
 Changed
