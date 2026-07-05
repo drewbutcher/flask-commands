@@ -132,17 +132,59 @@ a.reference.external {
 }
 
 @media (max-width: 959.98px) {
-  #pst-primary-sidebar-modal .sidebar-header-items__end ul.bd-navbar-elements.navbar-nav {
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end {
+    gap: 0.25rem !important;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .navbar-item:nth-of-type(2) {
+    margin-left: auto !important;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end ul.bd-navbar-elements.navbar-nav {
     flex-direction: row !important;
     gap: 0.125rem;
   }
 
-  #pst-primary-sidebar-modal .sidebar-header-items__end .bd-navbar-elements .nav-link {
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .bd-navbar-elements .nav-link {
     min-height: 2rem;
-    padding: 0.35rem 0.65rem !important;
+    padding: 0.35rem 0.5rem !important;
+    margin: 0 0.1rem;
     border-radius: 8px;
     font-size: 0.9rem;
     line-height: 1.2;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .search-button__default-text,
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .search-button__kbd-shortcut {
+    display: none !important;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .search-button__button,
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .pst-navbar-icon {
+    width: 2.1rem;
+    min-width: 2.1rem;
+    height: 2.1rem;
+    padding: 0 !important;
+    margin-inline: 0.05rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .navbar-icon-links {
+    margin: 0;
+    padding: 0;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end .navbar-icon-links .nav-item {
+    margin: 0 !important;
+  }
+
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end :is(a, button):focus,
+  :is(#pst-primary-sidebar, #pst-primary-sidebar-modal) .sidebar-header-items__end :is(a, button):focus-visible {
+    outline: 2px solid #5e43d6 !important;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.15rem rgba(94, 67, 214, 0.25) !important;
   }
 
   #pst-page-navigation-heading-2 {

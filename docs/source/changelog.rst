@@ -8,6 +8,13 @@ This project follows `Keep a Changelog <https://keepachangelog.com/>`_ and
 Unreleased
 ----------
 
+0.3.11 - 2026-07-05
+-------------------
+Fixed
+~~~~~
+- Fix mobile docs sidebar header spacing so the GitHub icon stays visible and
+  the focused navigation ring uses the docs purple accent.
+
 0.3.10 - 2026-07-03
 -------------------
 Added
