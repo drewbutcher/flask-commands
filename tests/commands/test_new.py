@@ -1,12 +1,47 @@
 import os
+import subprocess
+
 from click.testing import CliRunner
+
 from flask_commands.commands.new import new
+from flask_commands.utils.venv import venv_executable
 
 
+def _assert_app_factory_renders_starter_template(project_path):
+    python_path = venv_executable(str(project_path / "venv"), "python")
+    environment = os.environ.copy()
+    environment.update(
+        {
+            "APP_NAME": "test application",
+            "SQLALCHEMY_DEVELOPMENT_DATABASE_URI": "sqlite:///:memory:",
+            "SQLALCHEMY_PRODUCTION_DATABASE_URI": "sqlite:///:memory:",
+        }
+    )
 
-def _requirements_packages(project_path):
-    req = (project_path / "requirements.txt").read_text(encoding="utf-8").splitlines()
-    return {line.split("==", 1)[0].strip().lower() for line in req if "==" in line}
+    result = subprocess.run(
+        [
+            python_path,
+            "-c",
+            (
+                "from flask import render_template\n"
+                "from app import create_app\n"
+                "\n"
+                'for config_name in ("development", "production"):\n'
+                "    app = create_app(config_name)\n"
+                '    with app.test_request_context("/"):\n'
+                '        rendered = render_template("mains/index.html")\n'
+                '        assert "<title>Hello World | Test Application</title>" in rendered\n'
+                '        assert "<div>Hello World</div>" in rendered\n'
+                '        assert "tailwind.min.css?v=" in rendered\n'
+            )
+        ],
+        cwd=project_path,
+        env=environment,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
 
 def _assert_common_project_scaffold(project_path, project_name):
     # Core paths
@@ -21,7 +56,27 @@ def _assert_common_project_scaffold(project_path, project_name):
     assert (project_path / "app" / "controllers" / "main_controller.py").exists()
     assert (project_path / "app" / "routes" / "mains" / "__init__.py").exists()
     assert (project_path / "app" / "routes" / "mains" / "routes.py").exists()
+    assert (project_path / "app" / "templates" / "base.html").exists()
     assert (project_path / "app" / "templates" / "mains" / "index.html").exists()
+
+    expected_index_template = (
+        '{% extends "base.html" %}\n'
+        "\n"
+        "{% block title %}Hello World | {{ super() }}{% endblock title %}\n"
+        "\n"
+        "{% block content %}\n"
+        "    <div>Hello World</div>\n"
+        "{%- endblock content %}\n"
+    )
+
+    assert (
+        project_path
+        / "app"
+        / "templates"
+        / "mains"
+        / "index.html"
+    ).read_text(encoding="utf-8") == expected_index_template
+
     assert (project_path / "app" / "static" / "src" / "input.css").exists()
     assert (project_path / "config" / "__init__.py").exists()
     assert (project_path / "config" / "base_config.py").exists()
@@ -55,6 +110,10 @@ def _assert_common_project_scaffold(project_path, project_name):
     assert "project_path" not in run_sh
     assert f"cd {project_path}" in run_sh
 
+def _requirements_packages(project_path):
+    req = (project_path / "requirements.txt").read_text(encoding="utf-8").splitlines()
+    return {line.split("==", 1)[0].strip().lower() for line in req if "==" in line}
+
 def test_new_command_creates_project_with_db(tmp_path, monkeypatch):
     runner = CliRunner()
     monkeypatch.chdir(tmp_path)
@@ -77,7 +136,6 @@ def test_new_command_creates_project_with_db(tmp_path, monkeypatch):
         f"SQLALCHEMY_PRODUCTION_DATABASE_URI=mysql+pymysql://username:password@localhost:3306/my_app_prod\n"
     )
     assert (project_path / ".env").read_text(encoding="utf-8") == expected_env
-
 
     assert (project_path / "app" / "models").is_dir()
     assert (project_path / "app" / "models" / "__init__.py").read_text(encoding="utf-8") == "from .user import User\n"
@@ -103,6 +161,8 @@ def test_new_command_creates_project_with_db(tmp_path, monkeypatch):
     # DB path created by flask db init
     assert (project_path / "migrations").exists()
 
+    _assert_app_factory_renders_starter_template(project_path)
+
 def test_new_command_creates_project_without_db(tmp_path, monkeypatch):
     runner = CliRunner()
     monkeypatch.chdir(tmp_path)
@@ -113,8 +173,8 @@ def test_new_command_creates_project_without_db(tmp_path, monkeypatch):
 #     assert "cd my_app" in result.output
     assert "./run.sh" in result.output
 
-    project = tmp_path / "my_app"
-    _assert_common_project_scaffold(project, "my_app")
+    project_path = tmp_path / "my_app"
+    _assert_common_project_scaffold(project_path, "my_app")
 
 
     expected_env = (
@@ -123,7 +183,7 @@ def test_new_command_creates_project_without_db(tmp_path, monkeypatch):
         "FLASK_CONFIG=development\n"
         f"APP_NAME=my_app\n"
     )
-    assert (project / ".env").read_text(encoding="utf-8") == expected_env
+    assert (project_path / ".env").read_text(encoding="utf-8") == expected_env
 
     expected_env_example = (
         "SECRET_KEY=\n"
@@ -131,12 +191,12 @@ def test_new_command_creates_project_without_db(tmp_path, monkeypatch):
         "FLASK_CONFIG=\n"
         "APP_NAME=\n"
     )
-    assert (project / ".env.example").read_text(encoding="utf-8") == expected_env_example
+    assert (project_path / ".env.example").read_text(encoding="utf-8") == expected_env_example
 
-    assert not (project / "app" / "models").exists()
-    assert not (project / "migrations").exists()
+    assert not (project_path / "app" / "models").exists()
+    assert not (project_path / "migrations").exists()
 
-    app_init = (project / "app" / "__init__.py").read_text(encoding="utf-8")
+    app_init = (project_path / "app" / "__init__.py").read_text(encoding="utf-8")
     assert "from app import models" not in app_init
 
     # Desired no-db behavior assertions:
@@ -144,12 +204,14 @@ def test_new_command_creates_project_without_db(tmp_path, monkeypatch):
     assert "from flask_migrate import Migrate" not in app_init
     assert "from flask_sqlalchemy import SQLAlchemy" not in app_init
 
-    pkgs = _requirements_packages(project)
+    pkgs = _requirements_packages(project_path)
     assert "flask" in pkgs
     assert "python-dotenv" in pkgs
     assert "flask-login" not in pkgs
     assert "flask-migrate" not in pkgs
     assert "flask-sqlalchemy" not in pkgs
+
+    _assert_app_factory_renders_starter_template(project_path)
 
 def test_new_command_fails_if_project_exists(tmp_path, monkeypatch):
     runner = CliRunner()

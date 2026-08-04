@@ -1,3 +1,5 @@
+import time
+
 from config import config
 from flask import Flask
 from flask_login import LoginManager
@@ -17,6 +19,13 @@ def create_app(config_name) -> Flask:
 
     # apply configuration
     app.config.from_object(config[config_name])
+
+    # Expose global values to every Jinja template.
+    @app.context_processor
+    def inject_globals():
+        return {
+            "time": time,
+        }
 
     # initialize extensions: order matters
     login_manager.init_app(app)

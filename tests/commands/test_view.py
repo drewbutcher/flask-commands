@@ -1,7 +1,26 @@
 import os
 import pytest
+from pathlib import Path
+
+from flask import Flask, render_template
 from click.testing import CliRunner
+
 from flask_commands.commands.view import make_view
+
+BASE_TEMPLATE_SOURCE = (
+    Path(__file__).parents[2]
+    / "flask_commands"
+    / "project"
+    / "app"
+    / "templates"
+    / "base.html"
+)
+
+class FixedTime:
+    @staticmethod
+    def time():
+        return 123.0
+
 
 @pytest.fixture
 def project(tmp_path, monkeypatch):
@@ -100,6 +119,26 @@ def _assert_controller_contains(project, controller_file_name: str, snippets: li
     for snippet in snippets:
         assert snippet in controller_source
 
+def _render_project_template(project, template_name):
+    base_template = project / "app" / "templates" / "base.html"
+    base_template.write_text(
+        BASE_TEMPLATE_SOURCE.read_text(encoding="utf-8"),
+        encoding="utf-8",
+    )
+
+    app = Flask(
+        __name__,
+        template_folder=str(project / "app" / "templates"),
+    )
+    app.config["APP_NAME"] = "test application"
+
+    @app.context_processor
+    def inject_globals():
+        return {"time": FixedTime}
+
+    with app.test_request_context("/"):
+        return render_template(template_name)
+
 def test_make_view_with_invalid_dotted_path(project):
     runner = CliRunner()
     result = runner.invoke(make_view, ["  ..__  "])
@@ -117,24 +156,138 @@ def test_make_view_not_in_project_root(tmp_path, monkeypatch):
     assert "Warning: You are not currently in a Flask project root directory" in result.output
     assert not (tmp_path / "app" / "templates" / "card.py").exists()
 
-def test_make_view_component_only(project):
+def test_make_view_component_only(project, monkeypatch):
     """
     This should:
     1) create app/templates/card.html
-    2) Not create any routes, controllers, or models
+    2) not create any routes, controllers, or models
     3) print the "File Created" message
+    4) extend base.html and place the selected saying in the content block
     """
+    monkeypatch.setattr(
+        "flask_commands.utils.views.random.choice",
+        lambda sayings: sayings[0],
+    )
 
     runner = CliRunner()
     result = runner.invoke(make_view, ["card"])
 
     assert result.exit_code == 0, result.output
-     # File should exist
+
+    # File should exist
     template_file = project / "app" / "templates" / "card.html"
     assert template_file.exists()
 
+    expected_template = (
+        '{% extends "base.html" %}\n'
+        "\n"
+        "{% block title %}{{ super() }}{% endblock title %}\n"
+        "\n"
+        "{% block content %}\n"
+        "    <div>\n"
+        "        In the beginning there was None, and None became something when you assigned it purpose.\n"
+        "    </div>\n"
+        "{%- endblock content %}\n"
+    )
+    assert template_file.read_text(encoding="utf-8") == expected_template
+
     # Output should mention file created
     assert "Created New View" in result.output
+
+def test_make_view_component_only_renders_with_base_template(
+    project,
+    monkeypatch,
+):
+    monkeypatch.setattr(
+        "flask_commands.utils.views.random.choice",
+        lambda sayings: sayings[0],
+    )
+
+    result = CliRunner().invoke(make_view, ["card"])
+
+    assert result.exit_code == 0, result.output
+
+    rendered = _render_project_template(project, "card.html")
+
+    expected = (
+        "<!DOCTYPE html>\n"
+        '<html lang="en">\n'
+        "<head>\n"
+        '    <meta charset="UTF-8">\n'
+        '    <meta name="viewport"\n'
+        '          content="width=device-width, initial-scale=1.0">\n'
+        "    <title>Test Application</title>\n"
+        '        <link rel="stylesheet"\n'
+        '              href="/static/tailwind.min.css?v=123.0">\n'
+        "</head>\n"
+        "<body>\n"
+        "    <div>\n"
+        "        In the beginning there was None, and None became something when you assigned it purpose.\n"
+        "    </div>\n"
+        "</body>\n"
+        "</html>"
+    )
+
+    assert rendered == expected
+
+def test_child_view_can_extend_styles_and_add_body_scripts(project):
+    child_template = project / "app" / "templates" / "custom.html"
+    child_template.write_text(
+        '{% extends "base.html" %}\n'
+        "\n"
+        "{% block styles %}\n"
+        "{{ super() }}\n"
+        '        <link rel="stylesheet"\n'
+        '              href="/static/custom.css">\n'
+        "{%- endblock styles %}\n"
+        "\n"
+        "{% block content %}\n"
+        "    <main>Custom content</main>\n"
+        "{%- endblock content %}\n"
+        "\n"
+        "{% block scripts %}\n"
+        '    <script src="/static/app.js"></script>\n'
+        "{%- endblock scripts %}\n",
+        encoding="utf-8",
+    )
+
+    rendered = _render_project_template(project, "custom.html")
+
+    tailwind = 'href="/static/tailwind.min.css?v=123.0"'
+    custom_styles = 'href="/static/custom.css"'
+
+    assert tailwind in rendered
+    assert custom_styles in rendered
+    assert rendered.index(tailwind) < rendered.index(custom_styles)
+
+    assert rendered.endswith(
+        "    <main>Custom content</main>\n"
+        '    <script src="/static/app.js"></script>\n'
+        "</body>\n"
+        "</html>"
+    )
+
+def test_child_view_can_replace_default_styles_without_super(project):
+    child_template = project / "app" / "templates" / "replacement.html"
+    child_template.write_text(
+        '{% extends "base.html" %}\n'
+        "\n"
+        "{% block styles %}\n"
+        '        <link rel="stylesheet"\n'
+        '              href="/static/replacement.css">\n'
+        "{%- endblock styles %}\n"
+        "\n"
+        "{% block content %}\n"
+        "    <main>Replacement styles</main>\n"
+        "{%- endblock content %}\n",
+        encoding="utf-8",
+    )
+
+    rendered = _render_project_template(project, "replacement.html")
+
+    assert "tailwind.min.css" not in rendered
+    assert 'href="/static/replacement.css"' in rendered
+    assert "    <main>Replacement styles</main>" in rendered
 
 def test_make_view_root_action_with_generated_wiring_keeps_root_template(project):
     runner = CliRunner()
