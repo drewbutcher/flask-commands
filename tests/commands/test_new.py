@@ -43,6 +43,87 @@ def _assert_app_factory_renders_starter_template(project_path):
 
     assert result.returncode == 0, result.stderr
 
+def _assert_user_model_crud_helpers(project_path):
+    python_path = venv_executable(str(project_path / "venv"), "python")
+    environment = os.environ.copy()
+    environment.update(
+        {
+            "APP_NAME": "test application",
+            "SQLALCHEMY_DEVELOPMENT_DATABASE_URI": "sqlite:///:memory:",
+            "SQLALCHEMY_PRODUCTION_DATABASE_URI": "sqlite:///:memory:",
+        }
+    )
+
+    result = subprocess.run(
+        [
+            python_path,
+            "-c",
+            (
+                "from app import create_app, db\n"
+                "from app.models import User\n"
+                "\n"
+                'app = create_app("development")\n'
+                "with app.app_context():\n"
+                "    db.create_all()\n"
+                "\n"
+                "    user = User.create({\n"
+                '        "username": "original",\n'
+                '        "password": "secret",\n'
+                "    })\n"
+                "    assert user.id is not None\n"
+                '    assert user.username == "original"\n'
+                '    assert user.verify_password("secret")\n'
+                "\n"
+                "    updated_user = user.update({\n"
+                '        "username": "updated",\n'
+                '        "password": "new secret",\n'
+                "    })\n"
+                "    assert updated_user is user\n"
+                '    assert user.username == "updated"\n'
+                '    assert user.verify_password("new secret")\n'
+                "\n"
+                "    try:\n"
+                "        user.update({\n"
+                '            "username": "should not change",\n'
+                '            "zeta": "invalid",\n'
+                '            "alpha": "invalid",\n'
+                "        })\n"
+                "    except AttributeError as exception:\n"
+                "        assert str(exception) == (\n"
+                '            "Unknown User attribute(s): alpha, zeta"\n'
+                "        )\n"
+                "    else:\n"
+                '        raise AssertionError("User.update() accepted invalid attributes")\n'
+                '    assert user.username == "updated"\n'
+                "\n"
+                "    try:\n"
+                "        User.create({\n"
+                '            "username": "not-created",\n'
+                '            "unknown": "invalid",\n'
+                "        })\n"
+                "    except AttributeError as exception:\n"
+                "        assert str(exception) == (\n"
+                '            "Unknown User attribute(s): unknown"\n'
+                "        )\n"
+                "    else:\n"
+                '        raise AssertionError("User.create() accepted invalid attributes")\n'
+                "    assert User.query.filter_by(\n"
+                '        username="not-created"\n'
+                "    ).first() is None\n"
+                "\n"
+                "    user_id = user.id\n"
+                "    user.delete()\n"
+                "    assert db.session.get(User, user_id) is None\n"
+            ),
+        ],
+        cwd=project_path,
+        env=environment,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+
 def _assert_common_project_scaffold(project_path, project_name):
     # Core paths
     assert (project_path / "run.py").exists()
@@ -114,6 +195,7 @@ def _requirements_packages(project_path):
     req = (project_path / "requirements.txt").read_text(encoding="utf-8").splitlines()
     return {line.split("==", 1)[0].strip().lower() for line in req if "==" in line}
 
+
 def test_new_command_creates_project_with_db(tmp_path, monkeypatch):
     runner = CliRunner()
     monkeypatch.chdir(tmp_path)
@@ -162,6 +244,7 @@ def test_new_command_creates_project_with_db(tmp_path, monkeypatch):
     assert (project_path / "migrations").exists()
 
     _assert_app_factory_renders_starter_template(project_path)
+    _assert_user_model_crud_helpers(project_path)
 
 def test_new_command_creates_project_without_db(tmp_path, monkeypatch):
     runner = CliRunner()

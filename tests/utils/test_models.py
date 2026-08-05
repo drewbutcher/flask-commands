@@ -627,8 +627,9 @@ def test_model_make_file_success(model_project):
     assert "class Post(db.Model):" in observed_model_content
     assert "__tablename__ = 'posts'" in observed_model_content
     assert "id = db.Column(db.Integer, primary_key=True)" in observed_model_content
-    assert "def store_in_database(self):" in observed_model_content
-    assert "def delete_from_database(self):" in observed_model_content
+    assert "def create(cls, attributes):" in observed_model_content
+    assert "def update(self, attributes):" in observed_model_content
+    assert "def delete(self):" in observed_model_content
     assert "return f'<Post id:{self.id}>'" in observed_model_content
     assert observed_init_content == expected_init_content
 
@@ -679,8 +680,9 @@ def test_model_make_file_init_missing(tmp_path, monkeypatch):
     assert "class Post(db.Model):" in observed_model_content
     assert "__tablename__ = 'posts'" in observed_model_content
     assert "id = db.Column(db.Integer, primary_key=True)" in observed_model_content
-    assert "def store_in_database(self):" in observed_model_content
-    assert "def delete_from_database(self):" in observed_model_content
+    assert "def create(cls, attributes):" in observed_model_content
+    assert "def update(self, attributes):" in observed_model_content
+    assert "def delete(self):" in observed_model_content
     assert "return f'<Post id:{self.id}>'" in observed_model_content
 
     assert "Model __init__.py Missing" in message
@@ -712,8 +714,9 @@ def test_model_make_file_file_append_file_exception(model_project, monkeypatch):
     assert "class Post(db.Model):" in observed_model_content
     assert "__tablename__ = 'posts'" in observed_model_content
     assert "id = db.Column(db.Integer, primary_key=True)" in observed_model_content
-    assert "def store_in_database(self):" in observed_model_content
-    assert "def delete_from_database(self):" in observed_model_content
+    assert "def create(cls, attributes):" in observed_model_content
+    assert "def update(self, attributes):" in observed_model_content
+    assert "def delete(self):" in observed_model_content
     assert "return f'<Post id:{self.id}>'" in observed_model_content
     assert init_file.read_text(encoding="utf-8") == "\n"
 
@@ -768,8 +771,9 @@ def test_model_make_file_compound_name_uses_snake_case_file_import_and_table(mod
     assert "class UserProfile(db.Model):" in observed_model_content
     assert "__tablename__ = 'user_profiles'" in observed_model_content
     assert "id = db.Column(db.Integer, primary_key=True)" in observed_model_content
-    assert "def store_in_database(self):" in observed_model_content
-    assert "def delete_from_database(self):" in observed_model_content
+    assert "def create(cls, attributes):" in observed_model_content
+    assert "def update(self, attributes):" in observed_model_content
+    assert "def delete(self):" in observed_model_content
     assert "return f'<UserProfile id:{self.id}>'" in observed_model_content
     assert observed_init_content == expected_init_content
 
@@ -801,8 +805,9 @@ def test_model_make_file_acronym_name_uses_camel_to_snake(model_project):
     assert "class UserAPI(db.Model):" in observed_model_content
     assert "__tablename__ = 'user_apis'" in observed_model_content
     assert "id = db.Column(db.Integer, primary_key=True)" in observed_model_content
-    assert "def store_in_database(self):" in observed_model_content
-    assert "def delete_from_database(self):" in observed_model_content
+    assert "def create(cls, attributes):" in observed_model_content
+    assert "def update(self, attributes):" in observed_model_content
+    assert "def delete(self):" in observed_model_content
     assert "return f'<UserAPI id:{self.id}>'" in observed_model_content
     assert observed_init_content == expected_init_content
 
@@ -853,8 +858,9 @@ def test_model_make_file_init_missing_still_creates_compound_model_file(tmp_path
     assert "class UserProfile(db.Model):" in observed_model_content
     assert "__tablename__ = 'user_profiles'" in observed_model_content
     assert "id = db.Column(db.Integer, primary_key=True)" in observed_model_content
-    assert "def store_in_database(self):" in observed_model_content
-    assert "def delete_from_database(self):" in observed_model_content
+    assert "def create(cls, attributes):" in observed_model_content
+    assert "def update(self, attributes):" in observed_model_content
+    assert "def delete(self):" in observed_model_content
     assert "return f'<UserProfile id:{self.id}>'" in observed_model_content
 
     assert "Model __init__.py Missing" in message

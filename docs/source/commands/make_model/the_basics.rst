@@ -110,11 +110,53 @@ for us and understand each line.
                               onupdate=lambda: datetime.now(timezone.utc))
 
       # Methods
-      def store_in_database(self):
-         db.session.add(self)
+      @classmethod
+      def create(cls, attributes):
+         """Create an instance from mapped attributes, save it to the database,
+         and return it."""
+         valid_attributes = {
+             attribute.key
+             for attribute in cls.__mapper__.column_attrs
+         }
+         invalid_attributes = sorted(
+             set(attributes) - valid_attributes
+         )
+         if invalid_attributes:
+             invalid_names = ", ".join(invalid_attributes)
+             raise AttributeError(
+                 f"Unknown {cls.__name__} "
+                 f"attribute(s): {invalid_names}"
+             )
+               instance = cls()
+         for attribute, value in attributes.items():
+             setattr(instance, attribute, value)
+               db.session.add(instance)
          db.session.commit()
+         return instance
 
-      def delete_from_database(self):
+      def update(self, attributes):
+         """Update mapped attributes, save changes to the database,
+         and return this instance."""
+         valid_attributes = {
+             attribute.key
+             for attribute in self.__mapper__.column_attrs
+         }
+         invalid_attributes = sorted(
+             set(attributes) - valid_attributes
+         )
+         if invalid_attributes:
+             invalid_names = ", ".join(invalid_attributes)
+             raise AttributeError(
+                 f"Unknown {type(self).__name__} "
+                 f"attribute(s): {invalid_names}"
+             )
+               for attribute, value in attributes.items():
+             setattr(self, attribute, value)
+               db.session.commit()
+         return self
+
+      def delete(self):
+         """Delete this instance from the database."""
          db.session.delete(self)
          db.session.commit()
 
@@ -148,20 +190,29 @@ additional work.  In addition, if you modify the instance, ``updated_at``
 will receive a new timestamp when you save the changes to the database.
 
 Being able to save changes to the database is exactly where the last part of
-the model comes into play. In addition to the three columns, there are three
+the model comes into play. In addition to the three columns, there are four
 methods that finish off our class definition:
 
-- ``store_in_database``
-- ``delete_from_database``
+- ``create``
+- ``update``
+- ``delete``
 - ``__repr__``
 
-Once you have created a new model instance, you can call ``store_in_database``
-to push that new data onto the database.  In addition, if you change any of the
-instance's attributes you can use ``store_in_database`` again to persist
-those changes in the database.
+``create`` is a class method that accepts a dictionary of mapped model
+attributes. It validates the attribute names, creates and saves the new
+instance in the database, and returns that instance.
+
+``update`` accepts a dictionary of mapped model attributes, validates the
+attribute names, applies the changes, saves them in the database, and returns
+the updated instance.
+
+Both ``create`` and ``update`` raise an ``AttributeError`` before changing
+anything if the dictionary contains an attribute that is not mapped on the
+model. This helps catch misspelled or unexpected attribute names instead of
+silently ignoring them.
 
 If you ever need to remove an instance from the database,
-``delete_from_database`` will remove the row of data.
+``delete`` will remove the row of data.
 
 Finally, ``__repr__`` is a great tool for debugging.  It is the magic 🪄 method
 that runs when you print a model instance.

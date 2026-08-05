@@ -27,15 +27,76 @@ class User(UserMixin, db.Model):
         """Hash and set password"""
         self.password_hash = generate_password_hash(password)
 
+    # Methods
     def verify_password(self, password):
         """Returns true or false by verifing a given password"""
         return check_password_hash(self.password_hash, password)
 
-    def store_in_database(self):
-        db.session.add(self)
-        db.session.commit()
+    @classmethod
+    def create(cls, attributes):
+        """Create a user from writable attributes, save it to the database,
+        and return it."""
+        valid_attributes = {
+            attribute.key
+            for attribute in cls.__mapper__.column_attrs
+        }
+        valid_attributes.update(
+            name
+            for name, descriptor in vars(cls).items()
+            if isinstance(descriptor, property)
+            and descriptor.fset is not None
+        )
 
-    def delete_from_database(self):
+        invalid_attributes = sorted(
+            set(attributes) - valid_attributes
+        )
+        if invalid_attributes:
+            invalid_names = ", ".join(invalid_attributes)
+            raise AttributeError(
+                f"Unknown {cls.__name__} "
+                f"attribute(s): {invalid_names}"
+            )
+
+        instance = cls()
+        for attribute, value in attributes.items():
+            setattr(instance, attribute, value)
+
+        db.session.add(instance)
+        db.session.commit()
+        return instance
+
+    def update(self, attributes):
+        """Update writable attributes, save changes to the database,
+        and return this user."""
+        valid_attributes = {
+            attribute.key
+            for attribute in self.__mapper__.column_attrs
+        }
+        valid_attributes.update(
+            name
+            for name, descriptor in vars(type(self)).items()
+            if isinstance(descriptor, property)
+            and descriptor.fset is not None
+        )
+
+        invalid_attributes = sorted(
+            set(attributes) - valid_attributes
+        )
+        if invalid_attributes:
+            invalid_names = ", ".join(invalid_attributes)
+            raise AttributeError(
+                f"Unknown {type(self).__name__} "
+                f"attribute(s): {invalid_names}"
+            )
+
+        for attribute, value in attributes.items():
+            setattr(self, attribute, value)
+
+        db.session.commit()
+        return self
+
+    def delete(self):
+        """Delete this user from the database."""
         db.session.delete(self)
         db.session.commit()
 

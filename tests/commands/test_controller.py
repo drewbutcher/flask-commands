@@ -107,11 +107,58 @@ def project(tmp_path, monkeypatch):
         "                           default=lambda: datetime.now(timezone.utc), \n"
         "                           onupdate=lambda: datetime.now(timezone.utc))\n"
         "\n"
-        "    def store_in_database(self):\n"
-        "        db.session.add(self)\n"
-        "        db.session.commit()\n"
+        "    # Methods\n"
+        "    @classmethod\n"
+        "    def create(cls, attributes):\n"
+        '        """Create an instance from mapped attributes, save it to the database,\n'
+        '        and return it."""\n'
+        "        valid_attributes = {\n"
+        "            attribute.key\n"
+        "            for attribute in cls.__mapper__.column_attrs\n"
+        "        }\n"
+        "        invalid_attributes = sorted(\n"
+        "            set(attributes) - valid_attributes\n"
+        "        )\n"
+        "        if invalid_attributes:\n"
+        '            invalid_names = ", ".join(invalid_attributes)\n'
+        "            raise AttributeError(\n"
+        '                f"Unknown {cls.__name__} "\n'
+        '                f"attribute(s): {invalid_names}"\n'
+        "            )\n"
         "\n"
-        "    def delete_from_database(self):\n"
+        "        instance = cls()\n"
+        "        for attribute, value in attributes.items():\n"
+        "            setattr(instance, attribute, value)\n"
+        "\n"
+        "        db.session.add(instance)\n"
+        "        db.session.commit()\n"
+        "        return instance\n"
+        "\n"
+        "    def update(self, attributes):\n"
+        '        """Update mapped attributes, save changes to the database,\n'
+        '        and return this instance."""\n'
+        "        valid_attributes = {\n"
+        "            attribute.key\n"
+        "            for attribute in self.__mapper__.column_attrs\n"
+        "        }\n"
+        "        invalid_attributes = sorted(\n"
+        "            set(attributes) - valid_attributes\n"
+        "        )\n"
+        "        if invalid_attributes:\n"
+        '            invalid_names = ", ".join(invalid_attributes)\n'
+        "            raise AttributeError(\n"
+        '                f"Unknown {type(self).__name__} "\n'
+        '                f"attribute(s): {invalid_names}"\n'
+        "            )\n"
+        "\n"
+        "        for attribute, value in attributes.items():\n"
+        "            setattr(self, attribute, value)\n"
+        "\n"
+        "        db.session.commit()\n"
+        "        return self\n"
+        "\n"
+        "    def delete(self):\n"
+        '        """Delete this instance from the database."""\n'
         "        db.session.delete(self)\n"
         "        db.session.commit()\n"
         "\n"
