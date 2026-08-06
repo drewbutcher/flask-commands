@@ -94,82 +94,87 @@ for us and understand each line.
 
 .. code-block:: python
 
-   from app import db
-   from datetime import datetime, timezone
+    from app import db
+    from datetime import datetime, timezone
 
-   class Recipe(db.Model):
-      __tablename__ = 'recipes'
+    class Recipe(db.Model):
+        __tablename__ = 'recipes'
 
-      # Columns
-      id = db.Column(db.Integer, primary_key=True)
-      created_at = db.Column(db.DateTime(timezone=True),
-                              index=True,
-                              default=lambda: datetime.now(timezone.utc))
-      updated_at = db.Column(db.DateTime(timezone=True),
-                              default=lambda: datetime.now(timezone.utc),
-                              onupdate=lambda: datetime.now(timezone.utc))
+        # Columns
+        id = db.Column(db.Integer, primary_key=True)
+        created_at = db.Column(db.DateTime(timezone=True),
+                               index=True,
+                               default=lambda: datetime.now(timezone.utc))
+        updated_at = db.Column(db.DateTime(timezone=True),
+                               default=lambda: datetime.now(timezone.utc),
+                               onupdate=lambda: datetime.now(timezone.utc))
 
-      # Methods
-      @classmethod
-      def create(cls, attributes):
-         """Create an instance from mapped attributes, save it to the database,
-         and return it."""
-         valid_attributes = {
-             attribute.key
-             for attribute in cls.__mapper__.column_attrs
-         }
-         invalid_attributes = sorted(
-             set(attributes) - valid_attributes
-         )
-         if invalid_attributes:
-             invalid_names = ", ".join(invalid_attributes)
-             raise AttributeError(
-                 f"Unknown {cls.__name__} "
-                 f"attribute(s): {invalid_names}"
-             )
-               instance = cls()
-         for attribute, value in attributes.items():
-             setattr(instance, attribute, value)
-               db.session.add(instance)
-         db.session.commit()
-         return instance
+        # Methods
+        @classmethod
+        def create(cls, attributes):
+            """Create an instance from mapped attributes, save it to the database,
+            and return it."""
+            valid_attributes = {
+                attribute.key
+                for attribute in cls.__mapper__.column_attrs
+            }
+            invalid_attributes = sorted(
+                set(attributes) - valid_attributes
+            )
+            if invalid_attributes:
+                invalid_names = ", ".join(invalid_attributes)
+                raise AttributeError(
+                    f"Unknown {cls.__name__} "
+                    f"attribute(s): {invalid_names}"
+                )
 
-      def update(self, attributes):
-         """Update mapped attributes, save changes to the database,
-         and return this instance."""
-         valid_attributes = {
-             attribute.key
-             for attribute in self.__mapper__.column_attrs
-         }
-         invalid_attributes = sorted(
-             set(attributes) - valid_attributes
-         )
-         if invalid_attributes:
-             invalid_names = ", ".join(invalid_attributes)
-             raise AttributeError(
-                 f"Unknown {type(self).__name__} "
-                 f"attribute(s): {invalid_names}"
-             )
-               for attribute, value in attributes.items():
-             setattr(self, attribute, value)
-               db.session.commit()
-         return self
+            instance = cls()
+            for attribute, value in attributes.items():
+                setattr(instance, attribute, value)
 
-      def delete(self):
-         """Delete this instance from the database."""
-         db.session.delete(self)
-         db.session.commit()
+            db.session.add(instance)
+            db.session.commit()
+            return instance
 
-      def __repr__(self):
-         """Model representation for Code Debugging"""
-         return f'<Recipe id:{self.id}>'
+        def update(self, attributes):
+            """Update mapped attributes, save changes to the database,
+            and return this instance."""
+            valid_attributes = {
+                attribute.key
+                for attribute in self.__mapper__.column_attrs
+            }
+            invalid_attributes = sorted(
+                set(attributes) - valid_attributes
+            )
+            if invalid_attributes:
+                invalid_names = ", ".join(invalid_attributes)
+                raise AttributeError(
+                    f"Unknown {type(self).__name__} "
+                    f"attribute(s): {invalid_names}"
+                )
+
+            for attribute, value in attributes.items():
+                setattr(self, attribute, value)
+
+            db.session.commit()
+            return self
+
+        def delete(self):
+            """Delete this instance from the database."""
+            db.session.delete(self)
+            db.session.commit()
+
+        def __repr__(self):
+            """Model representation for Code Debugging"""
+            return f'<Recipe id:{self.id}>'
 
 
 
 While the generated model file might look a little scary 🫣 at first, it is
 actually a small and useful starting point.  This is one of the main features
 I wanted from Flask-Commands.  When I am building a new data structure, the
-first mental hurdle is often just getting the model file shaped correctly.
+first mental hurdle is often just getting the model file started with the
+right shape.
 
 Let's go through each line of this model file and debunk the mystery.
 The first observation is to notice that a model is just a Python class that
@@ -198,21 +203,28 @@ methods that finish off our class definition:
 - ``delete``
 - ``__repr__``
 
-``create`` is a class method that accepts a dictionary of mapped model
-attributes. It validates the attribute names, creates and saves the new
-instance in the database, and returns that instance.
+When you want a new model instance, ``create`` is a handy class method that
+accepts a dictionary of mapped model attributes. It first validates the
+attribute names, then creates and saves the new instance in the database.
+Finally, ``create`` returns the new instance.
 
-``update`` accepts a dictionary of mapped model attributes, validates the
-attribute names, applies the changes, saves them in the database, and returns
-the updated instance.
+If you have never seen a class method before, it is called a little differently
+than a normal instance method. Instead of calling it on an existing model
+instance, you call it directly on the model class. We will see this in action
+in an upcoming section.
+
+Next is ``update``, which also accepts a dictionary of mapped model attributes.
+Similar to ``create``, the ``update`` method first validates the attribute
+names.  After validating, it applies the changes to the existing instance,
+saves them in the database, and before ending returns the updated instance.
 
 Both ``create`` and ``update`` raise an ``AttributeError`` before changing
 anything if the dictionary contains an attribute that is not mapped on the
 model. This helps catch misspelled or unexpected attribute names instead of
 silently ignoring them.
 
-If you ever need to remove an instance from the database,
-``delete`` will remove the row of data.
+The final database-changing method is ``delete``, which removes an instance
+from the database.  Remember there is no coming back from delete 💣!
 
 Finally, ``__repr__`` is a great tool for debugging.  It is the magic 🪄 method
 that runs when you print a model instance.
@@ -343,29 +355,22 @@ salad recipe:
 
 .. code-block:: pycon
 
-   >>> recipe = Recipe(name='salad')
-   >>> print(recipe)
-   <Recipe id:None>
-
-Here we create our first instance of ``Recipe``. Notice that the ``id`` is
-``None``. This is because, at this point, the instance is only in memory and
-has not yet created a row in our database.  Also notice that typing
-``print(recipe)`` shows the friendly debugging representation from
-``__repr__``.
-
-Now let's store this instance in the database and see the ``id`` column
-populate:
-
-.. code-block:: pycon
-
-   >>> recipe.store_in_database()
+   >>> recipe = Recipe.create({'name': 'salad'})
    >>> print(recipe)
    <Recipe id:1>
    >>> Recipe.query.count()
    1
 
-Once the recipe is committed to the database, it has an ``id``. That is the
-database saying, "I know this instance and I have assigned it to row 1."
+Here we create our first instance of ``Recipe`` by calling ``create`` directly
+on the ``Recipe`` class and giving it a dictionary containing the attributes
+for our new recipe. The class method creates the instance, saves it in the
+database, and returns it to us.
+
+Notice that typing ``print(recipe)`` shows the friendly debugging
+representation from ``__repr__``.  The representation shows an ``id`` of ``1``
+instead of ``None`` because ``create`` commits the recipe to the database
+before returning it. The final line, ``Recipe.query.count()``, confirms that
+the database now contains one recipe.
 
 We can also see ``updated_at`` do its quiet little bit of magic 🪄. First, save
 the current timestamp:
@@ -380,28 +385,48 @@ Now let's change the recipe's name and see if ``updated_at`` changes.
 
 .. code-block:: pycon
 
-   >>> recipe.name = 'fruit salad'
+   >>> updated_recipe = recipe.update({'name': 'fruit salad'})
+   >>> updated_recipe is recipe
+   True
+   >>> recipe.name
+   'fruit salad'
+   >>> updated_recipe.name
+   'fruit salad'
+   >>> recipe.updated_at > original_updated_at
+   True
    >>> recipe.updated_at
-   datetime.datetime(2026, 5, 12, 9, 55, 58, 577798)
+   datetime.datetime(2026, 5, 12, 9, 57, 32, 343438)
 
-Notice that ``updated_at`` has not changed yet. We changed the Python object,
-but we have not committed that change to the database.
+The ``update`` method applies the dictionary of attributes to the existing
+instance, commits the changes, and returns that same instance. You do not have
+to assign the return value, but you can if it is useful for your application.
 
-When we store the recipe again, SQLAlchemy applies the ``onupdate`` value:
+Because ``updated_recipe is recipe`` returns ``True``, we know both variables
+refer to the same in-memory instance. They therefore both contain the new
+``'fruit salad'`` name. In addition, notice that ``updated_at`` has also
+changed because SQLAlchemy executed the column's ``onupdate`` function when
+the change was committed.
+
+The attribute validation also protects us from misspelled attribute names.
+For example:
 
 .. code-block:: pycon
 
-   >>> recipe.store_in_database()
-   >>> recipe.updated_at
-   datetime.datetime(2026, 5, 12, 9, 57, 32, 343438)
-   >>> recipe.updated_at > original_updated_at
-   True
+   >>> recipe.update({'naem': 'green salad'})
+   Traceback (most recent call last):
+   ...
+   AttributeError: Unknown Recipe attribute(s): naem
+   >>> recipe.name
+   'fruit salad'
+
+Because ``naem`` is not a mapped attribute on ``Recipe``, ``update`` raises an
+``AttributeError`` before changing the instance or committing anything.
 
 Finally, we can delete the recipe:
 
 .. code-block:: pycon
 
-   >>> recipe.delete_from_database()
+   >>> recipe.delete()
    >>> print(recipe)
    <Recipe id:1>
    >>> Recipe.query.count()

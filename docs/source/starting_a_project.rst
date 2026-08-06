@@ -49,6 +49,21 @@ project, that file is ``run.py``.
 The goal is not to hide Flask from you. The goal is to give you a clean
 starting structure that you can open, read, and build from right away.
 
+Understand the Starter Templates
+--------------------------------
+
+.. youtube_embed:: understand-the-starter-templates
+
+A newly generated project includes two templates that work together:
+
+- ``app/templates/base.html`` provides the shared HTML document structure.
+- ``app/templates/mains/index.html`` extends that structure to create the
+  starter home page.
+
+The base template gives every page one reusable place for shared metadata,
+styles, page content, and scripts. Individual pages can then override only
+the pieces they need without repeating the entire HTML document.
+
 Create a Project Without a Database
 -----------------------------------
 
