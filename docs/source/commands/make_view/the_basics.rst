@@ -51,15 +51,100 @@ That’s it. You now have a new template at:
 
 Nice and simple 😌.
 
-No route.
-No controller.
-No model.
-Just the file.
+- No route.
+- No controller.
+- No model.
+- Just the file.
 
-That may sound a little underwhelming at first, but sometimes that is exactly
-what you want. Maybe you are making a basic page. Maybe you are sketching
-something out. Maybe you just want the file on disk first and want to think
-about the wiring after your coffee ☕️ kicks in.
+If you open the new template file, it will look something like this:
+
+.. code-block:: html+jinja
+
+   {% extends "base.html" %}
+
+   {% block title %}{{ super() }}{% endblock title %}
+
+   {% block content %}
+       <div>
+           Your future self is your most important user.
+       </div>
+   {%- endblock content %}
+
+At first this might look a little odd, expecally if you are new to Jinja.
+The contents of this file are a mixture of Jinja and HTML.  Let's go throught
+this line by line.  There are three sections in this file.
+
+1)  The first line tells Jinja that this template extends ``base.html``.  You
+might be thinking "What is ``base.html``?" I know I would.  For now think of
+``base.html`` as your blueprint on how to structure all your html files. We will
+look at it's content below.
+
+2) The second section is the title which is what appears on the tab as the
+webpages name.  Inside the block tags ``{% block title %}...{% endblock title %}``
+you see ``{{ super() }}`` this is saying take whatever the base.html has
+insides it's block title and use that.  You can modify this by doing something
+like the following:
+
+.. code-block:: html+jinja
+
+   {% block title %}About | {{ super() }}{% endblock title %}
+
+Then the tab will have the title of "About | " followed by whatever
+the ``base.html`` has in it's title section.
+
+3) The third section is where most of your work will be places.  It's the
+block of content ``{% block title %}...{% endblock title %}`` which is what
+shows up on the page.
+
+Lets now disect ``base.html`` which is located in the app template directory.
+This file provides the shared HTML document structure. This way all your html
+pages have a uniform structure. The file is more Jinja and HTML
+
+.. code-block:: html+jinja
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{% block title %}{{ config['APP_NAME'] | title }}{% endblock title %}</title>
+      {%- block metadata %}{% endblock metadata %}
+      {%- block styles %}
+         <link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
+      {%- endblock styles %}
+   </head>
+   <body>
+      {%- block content %}{% endblock content %}
+      {%- block scripts %}{% endblock scripts %}
+   </body>
+   </html>
+
+For those familar with HTML this is a boilerplate HTML file which a few
+changes.  Inside the title tags we create a block for title content and
+prepopulate it with the applications name (in title case) which is found in
+your ``.env`` file.  Also we make a block for metadata with nothing in it.  We
+add in a style block and put in tailwind.  The v=time.time() is use as a
+browser cache buster so as you are developing your style file updates.
+You can remove `` v=time.time()`` when you are finished making changes to
+your website for the time being.  I have never gotten to that point myself.
+The block content is where you will put all of your main content for the page.
+Finally the script block is where you would add any javascript files.
+
+A key concept to note here is that if you add anything inside one of the blocks
+in the ``base.html`` then that will populate to all of your html files that
+extend ``base.html`` which should be all of your html files.  For example, you
+will want your style sheet on every page so instead of writing the line
+``<link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">``
+over and over again in each file you just put it in.  If you add a javascript
+library to base then you will have that same javascript library on every single
+page which may or may not be what you want.  The warning is to be careful with
+what you change in ``base.html``
+
+So now that we have debunked the mistory of a view template it may sound a
+little underwhelming at first, but sometimes that is exactly what you want.
+Maybe you are making a basic page. Maybe you are sketching something out.
+Maybe you just want the file on disk first and want to think about the wiring
+after your coffee ☕️ kicks in.
 
 The important thing to know is this: the template now exists, but it does
 **not** appear anywhere in your application yet. You cannot just type

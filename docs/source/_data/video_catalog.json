@@ -53,11 +53,6 @@
     "what-the-default-scaffold-gives-you": {
       "title": "What the default scaffold gives you",
       "description": "Learn what the default project structure includes out of the box so you know which files, folders, and moving parts Flask-Commands is creating for you.",
-      "video_id": "T5p1quhwKfQ"
-    },
-    "understand-the-starter-templates": {
-      "title": "Understand the Starter Templates",
-      "description": "Learn how the generated base template and starter page work together through Jinja inheritance, blocks, and super().",
       "video_id": ""
     },
     "create-a-project-without-a-database": {
@@ -118,7 +113,7 @@
     "create-a-simple-template-with-flask-make-view": {
       "title": "Create a simple template with flask make:view",
       "description": "Watch the smallest useful make:view example so you can see how fast the page-first workflow gets a template and route onto the screen.",
-      "video_id": "QsmlRyq0uEA"
+      "video_id": ""
     },
     "understand-the-mains-namespace": {
       "title": "Understand the mains Namespace",
@@ -421,7 +416,7 @@
       "groups": [
         { "heading": "Welcome", "doc": "welcome", "video_keys": ["what-is-flask-commands", "what-flask-commands-is-not", "the-plain-recipe-app-we-are-building", "how-to-use-this-documentation"] },
         { "heading": "Install and First Run", "doc": "install_and_first_run", "video_keys": ["install-the-prerequisites-for-flask-commands", "install-flask-commands-with-pipx", "install-flask-commands-with-pip", "confirm-the-command-with-version", "read-the-cli-at-a-glance-with-help"] },
-        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "understand-the-starter-templates", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
+        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
         { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "view-input-normalization", "naming-conventions", "what-to-remember"] },
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
         { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
@@ -443,13 +438,13 @@
       "groups": [
         { "heading": "Welcome", "doc": "welcome", "video_keys": ["what-is-flask-commands", "what-flask-commands-is-not", "the-plain-recipe-app-we-are-building", "how-to-use-this-documentation"] },
         { "heading": "Install and First Run", "doc": "install_and_first_run", "video_keys": ["install-the-prerequisites-for-flask-commands", "install-flask-commands-with-pipx", "install-flask-commands-with-pip", "confirm-the-command-with-version", "read-the-cli-at-a-glance-with-help"] },
-        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "understand-the-starter-templates", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
+        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
         { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "view-input-normalization", "naming-conventions", "what-to-remember"] }
       ]
     },
     "new_videos": {
       "groups": [
-        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "understand-the-starter-templates", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] }
+        { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] }
       ]
     },
     "make_view_videos": {

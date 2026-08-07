@@ -1,0 +1,385 @@
+Nice and simple 😌.
+
+- No route.
+- No controller.
+- No model.
+- Just the file.
+
+That may sound a little underwhelming at first, but sometimes a single file is
+exactly where you want to begin. Maybe you are sketching out a page. Maybe you
+want to experiment with the HTML before thinking about URLs and controllers.
+Maybe your coffee ☕️ has not finished negotiating with your brain yet.
+
+Whatever the reason, Flask-Commands is happy to start small.
+
+Open ``app/templates/about.html`` and you will see something resembling this:
+
+.. code-block:: html+jinja
+
+   {% extends "base.html" %}
+
+   {% block title %}{{ super() }}{% endblock title %}
+
+   {% block content %}
+       <div>
+           Your future self is your most important user.
+       </div>
+   {%- endblock content %}
+
+The saying inside the ``div`` is selected randomly whenever Flask-Commands
+generates a view. Your file may contain a different saying, but the surrounding
+Jinja structure will be the same.
+
+A Small File With a Large Inheritance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+At first glance, this file may look a little mysterious—especially if Jinja is
+new to you. There is hardly any HTML here. We asked for a page, and
+Flask-Commands handed us a few curly braces and a philosophical observation
+about our future self. What happened to ``<!DOCTYPE html>``? Where are
+``<head>`` and ``<body>``? Did Flask-Commands forget the rest of the page? 😨
+
+Fortunately, nothing has gone missing.
+
+This template is a **child template**. Instead of repeating the entire HTML
+document in every view, it inherits the shared document structure from
+``base.html``.
+
+Think of ``base.html`` as the frame of a house. It provides the foundation,
+walls, wiring, and plumbing. A child template decides what belongs in a
+particular room. You can renovate the room without rebuilding the entire
+house—and, perhaps more importantly, without copying the plumbing into every
+bedroom.
+
+Before walking through the file, there are two pieces of Jinja syntax worth
+recognizing:
+
+- ``{% ... %}`` tells Jinja to do something, such as extend another template
+  or define a block.
+- ``{{ ... }}`` tells Jinja to place a value into the rendered HTML.
+
+With that small decoder ring in hand, the generated template becomes much less
+mysterious.
+
+The Parent Template
+~~~~~~~~~~~~~~~~~~~
+
+The first line is:
+
+.. code-block:: html+jinja
+
+   {% extends "base.html" %}
+
+This tells Jinja that the current template is built on top of ``base.html``.
+The base template supplies the shared HTML document, and this child template
+fills in selected areas called **blocks**.
+
+The ``extends`` statement is the family connection. Without it, this file is
+just a handful of Jinja blocks floating alone in the wilderness. With it, the
+file becomes a complete HTML page when Flask renders the template.
+
+The Page Title
+~~~~~~~~~~~~~~
+
+The next section controls the title shown in the browser tab:
+
+.. code-block:: html+jinja
+
+   {% block title %}{{ super() }}{% endblock title %}
+
+The words ``block title`` tell Jinja that this section corresponds to the
+``title`` block defined in ``base.html``.
+
+Inside that block, ``super()`` means:
+
+   Use the content supplied by the parent template.
+
+In this case, the parent supplies the application's name. If that is all you
+want, you can leave the generated title block exactly as it is.
+
+You can also add page-specific text while keeping the parent title:
+
+.. code-block:: html+jinja
+
+   {% block title %}About | {{ super() }}{% endblock title %}
+
+Now the browser tab will display ``About |`` followed by the application name.
+The page gains its own identity without forgetting which application it belongs
+to. Very polite of it, really.
+
+If you override the block without calling ``super()``, the parent title is
+replaced completely:
+
+.. code-block:: html+jinja
+
+   {% block title %}About Our Company{% endblock title %}
+
+That gives you three useful choices:
+
+- leave the block alone and inherit the parent title;
+- call ``super()`` and add to the parent title;
+- omit ``super()`` and replace the parent title.
+
+We will see this same pattern again when we work with styles.
+
+The Page Content
+~~~~~~~~~~~~~~~~
+
+The third section is where most of your page-specific work will live:
+
+.. code-block:: html+jinja
+
+   {% block content %}
+       <div>
+           Your future self is your most important user.
+       </div>
+   {%- endblock content %}
+
+The ``content`` block replaces the matching placeholder inside the body of
+``base.html``. Whatever you put inside this block becomes the visible content
+of the page.
+
+The small dash in ``{%- endblock content %}`` asks Jinja to trim the whitespace
+immediately before the closing block. It does not change the meaning of the
+HTML; it simply helps keep the rendered output tidy. Even whitespace appreciates
+a little housekeeping 🧹.
+
+Meet ``base.html``
+~~~~~~~~~~~~~~~~~~
+
+Now that we understand the child template, let's meet the parent doing all the
+quiet work behind the scenes.
+
+The generated base template lives at:
+
+- ``app/templates/base.html``
+
+It contains:
+
+.. code-block:: html+jinja
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport"
+             content="width=device-width, initial-scale=1.0">
+       <title>{% block title %}{{ config['APP_NAME'] | title }}{% endblock title %}</title>
+       {%- block metadata %}{% endblock metadata %}
+       {%- block styles %}
+           <link rel="stylesheet"
+                 href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
+       {%- endblock styles %}
+   </head>
+   <body>
+       {%- block content %}{% endblock content %}
+       {%- block scripts %}{% endblock scripts %}
+   </body>
+   </html>
+
+For anyone familiar with HTML, most of this should look reassuringly ordinary.
+That is intentional. Flask-Commands is not trying to invent a new kind of web
+page. It is giving ordinary HTML a reusable skeleton.
+
+The important additions are five Jinja blocks:
+
+- ``title``
+- ``metadata``
+- ``styles``
+- ``content``
+- ``scripts``
+
+Each block is an invitation from the parent template:
+
+   A child template may place something here.
+
+The ``title`` Block
+~~~~~~~~~~~~~~~~~~~
+
+The default title comes from:
+
+.. code-block:: html+jinja
+
+   {{ config['APP_NAME'] | title }}
+
+``APP_NAME`` comes from the application's configuration, and the ``title``
+filter formats it in title case. This gives every page a useful default title
+before you write any page-specific title at all.
+
+The ``metadata`` Block
+~~~~~~~~~~~~~~~~~~~~~~
+
+The empty ``metadata`` block lives inside ``<head>``:
+
+.. code-block:: html+jinja
+
+   {%- block metadata %}{% endblock metadata %}
+
+A child template can use this block for page-specific metadata, such as a
+description:
+
+.. code-block:: html+jinja
+
+   {% block metadata %}
+       <meta name="description"
+             content="Learn more about our company.">
+   {% endblock metadata %}
+
+Because the block starts empty, pages that do not need extra metadata do not
+have to do anything.
+
+The ``styles`` Block
+~~~~~~~~~~~~~~~~~~~~
+
+The ``styles`` block includes Tailwind by default:
+
+.. code-block:: html+jinja
+
+   {%- block styles %}
+       <link rel="stylesheet"
+             href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
+   {%- endblock styles %}
+
+Keeping Tailwind inside the block is important because it gives every child
+template three choices.
+
+If the child does not override ``styles``, it inherits Tailwind automatically.
+This will be the normal choice for most pages.
+
+If the child wants Tailwind **and** another stylesheet, it can call
+``super()``:
+
+.. code-block:: html+jinja
+
+   {% block styles %}
+       {{ super() }}
+       <link rel="stylesheet"
+             href="{{ url_for('static', filename='about.css') }}">
+   {% endblock styles %}
+
+The call to ``super()`` keeps Tailwind, and the additional ``link`` adds the
+page-specific stylesheet.
+
+If the child wants to replace Tailwind completely, it can override the block
+without calling ``super()``:
+
+.. code-block:: html+jinja
+
+   {% block styles %}
+       <link rel="stylesheet"
+             href="{{ url_for('static', filename='about.css') }}">
+   {% endblock styles %}
+
+No ``super()`` means no parent block content. Tailwind steps aside, and the
+child takes complete control.
+
+This is why Tailwind belongs **inside** the block instead of beside it. The
+parent provides a useful default without locking every child template into that
+choice.
+
+What Is ``v=time.time()`` Doing?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Tailwind URL includes:
+
+.. code-block:: html+jinja
+
+   v=time.time()
+
+The generated application factory exposes Python's ``time`` module to every
+Jinja template through a context processor. Calling ``time.time()`` adds the
+current timestamp to the stylesheet URL as a query parameter.
+
+To the browser, these appear to be different URLs:
+
+.. code-block:: text
+
+   /static/tailwind.min.css?v=1786118400.0
+   /static/tailwind.min.css?v=1786118405.0
+
+This prevents the browser from stubbornly serving yesterday's stylesheet while
+you are trying to admire today's changes. Browsers love caching files. During
+development, they occasionally love it a little too much.
+
+For production, you may eventually remove the changing timestamp or replace it
+with a release or asset version so browsers can cache the stylesheet
+efficiently. I say “eventually” because a website is never truly finished—it
+merely reaches a point where we stop touching it long enough to deploy 😄.
+
+The ``content`` Block
+~~~~~~~~~~~~~~~~~~~~~
+
+Inside ``<body>``, the base template provides the empty ``content`` block:
+
+.. code-block:: html+jinja
+
+   {%- block content %}{% endblock content %}
+
+This is where the generated child template places its ``div`` and randomly
+selected saying. As your page grows, this is where headings, forms, tables,
+cards, and the rest of your visible page structure will live.
+
+The ``scripts`` Block
+~~~~~~~~~~~~~~~~~~~~~
+
+The final block appears immediately before ``</body>``:
+
+.. code-block:: html+jinja
+
+   {%- block scripts %}{% endblock scripts %}
+
+That position is deliberate. A child template can add page-specific JavaScript
+without moving script tags into the middle of the document:
+
+.. code-block:: html+jinja
+
+   {% block scripts %}
+       <script src="{{ url_for('static', filename='about.js') }}"></script>
+   {% endblock scripts %}
+
+When Jinja renders the page, that script appears immediately before the closing
+``</body>`` tag.
+
+One Base, Many Pages
+~~~~~~~~~~~~~~~~~~~~
+
+The real power of ``base.html`` is not that it saves a few lines today. It is
+that it gives your application one dependable place for the structure shared
+by every page.
+
+Add a site-wide stylesheet to the base template, and every child can inherit
+it. Add shared metadata, and it becomes available across the application. Add
+a JavaScript library to the scripts block, and every extending template can
+receive it.
+
+That power deserves a little respect. A change to ``base.html`` is not a
+whisper—it is a megaphone 📣. It can reach every template that extends the
+base. That is wonderful when you intend it and wonderfully educational when
+you do not.
+
+Flask-Commands-generated views extend ``base.html`` automatically. Templates
+you create by hand can extend it too, giving the application a consistent
+document structure without copying the same HTML into file after file.
+
+Still Just a File
+~~~~~~~~~~~~~~~~~
+
+After all that inheritance, rendering, and architectural wisdom, our
+``about.html`` template is still only a file.
+
+It has:
+
+- no route;
+- no controller;
+- no model.
+
+It does **not** appear in the browser yet. Visiting ``/about`` will still return
+a ``404`` because nothing in the application knows that URL should render this
+template.
+
+That is not a failure. It is the boundary we asked Flask-Commands to respect.
+We requested a view, so it created a view—nothing more and nothing less.
+
+Sometimes that is exactly what you want. Sometimes you want to sketch the page
+first and wire it later. And sometimes the coffee has finally kicked in, and
+you are ready to connect the rest of the application ☕️🚀.
