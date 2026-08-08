@@ -112,7 +112,37 @@
     },
     "create-a-simple-template-with-flask-make-view": {
       "title": "Create a simple template with flask make:view",
-      "description": "Watch the smallest useful make:view example so you can see how fast the page-first workflow gets a template and route onto the screen.",
+      "description": "Create an about template with flask make:view, find the generated file, and understand exactly what the command creates when no optional flags are used.",
+      "video_id": ""
+    },
+    "read-the-generated-child-template": {
+      "title": "Read the generated child template",
+      "description": "Open a generated view and learn what its extends statement, title block, content block, and randomly selected saying are doing.",
+      "video_id": ""
+    },
+    "understand-jinja-template-inheritance": {
+      "title": "Understand Jinja template inheritance",
+      "description": "See how a base template, child template, Jinja blocks, and super() combine to produce one complete customized HTML page.",
+      "video_id": ""
+    },
+    "customize-the-title-and-content-blocks": {
+      "title": "Customize the title and content blocks",
+      "description": "Learn how to inherit, extend, or replace the browser title and where to write the page-specific HTML users will see.",
+      "video_id": ""
+    },
+    "meet-the-base-template": {
+      "title": "Meet the base template",
+      "description": "Tour the shared HTML structure and the five Jinja blocks provided by the generated base.html template.",
+      "video_id": ""
+    },
+    "inherit-add-or-replace-styles": {
+      "title": "Inherit, add, or replace styles",
+      "description": "Use the styles block and super() to inherit Tailwind, add a page-specific stylesheet, or replace the shared stylesheet completely.",
+      "video_id": ""
+    },
+    "use-metadata-and-scripts": {
+      "title": "Use metadata and scripts",
+      "description": "Add page-specific metadata and JavaScript while keeping scripts in their intended position immediately before the closing body tag.",
       "video_id": ""
     },
     "understand-the-mains-namespace": {
@@ -419,7 +449,7 @@
         { "heading": "Starting a Project", "doc": "starting_a_project", "video_keys": ["create-a-project-with-flask-new", "what-the-default-scaffold-gives-you", "create-a-project-without-a-database", "run-the-new-project", "use-flask-commands-inside-the-new-project", "alternative-manual-startup"] },
         { "heading": "Core Ideas", "doc": "commands/core_ideas", "video_keys": ["project-root-safety", "restful-actions", "dot-notation", "view-input-normalization", "naming-conventions", "what-to-remember"] },
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
-        { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
+        { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "read-the-generated-child-template", "understand-jinja-template-inheritance", "customize-the-title-and-content-blocks", "meet-the-base-template", "inherit-add-or-replace-styles", "use-metadata-and-scripts", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
         { "heading": "Model Prompt for make:view", "doc": "commands/make_view/model_prompt", "video_keys": ["normalize-input-before-scaffolding", "understand-missing-model-prompts", "avoid-prompts-with-flags", "choose-between-route-model-and-m", "model-prompts-final-comment"] },
         { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view"] },
         { "heading": "Building the First Resource with make:view", "doc": "commands/make_view/building_the_first_resource", "video_keys": ["build-recipes-index-as-the-first-resource", "understand-what-rcm-created", "add-recipes-show-to-the-resource", "why-recipes-show-matters", "keep-the-templates-intentionally-plain", "with-two-commands-you-have-something-to-show"] },
@@ -450,7 +480,7 @@
     "make_view_videos": {
       "groups": [
         { "heading": "flask make:view", "doc": "commands/make_view", "video_keys": ["into-to-flask-make-view"] },
-        { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
+        { "heading": "The Basics of make:view", "doc": "commands/make_view/the_basics", "video_keys": ["create-a-simple-template-with-flask-make-view", "read-the-generated-child-template", "understand-jinja-template-inheritance", "customize-the-title-and-content-blocks", "meet-the-base-template", "inherit-add-or-replace-styles", "use-metadata-and-scripts", "understand-the-mains-namespace", "wire-a-page-explicitly", "use-generator-flags-with-make-view", "use-mains-intentionally", "a-quick-peek-at-nested-views", "when-make-view-is-the-right-starting-point"] },
         { "heading": "Model Prompt for make:view", "doc": "commands/make_view/model_prompt", "video_keys": ["normalize-input-before-scaffolding", "understand-missing-model-prompts", "avoid-prompts-with-flags", "choose-between-route-model-and-m", "model-prompts-final-comment"] },
         { "heading": "GET vs POST for RESTful Actions with make:view", "doc": "commands/make_view/get_vs_post_for_restful_actions", "video_keys": ["get-actions-render-pages", "post-actions-change-state", "the-browser-flow", "a-real-example-with-recipes-create-and-recipes-store", "no-template-for-post-actions", "what-get-vs-post-means-when-using-make-view"] },
         { "heading": "Building the First Resource with make:view", "doc": "commands/make_view/building_the_first_resource", "video_keys": ["build-recipes-index-as-the-first-resource", "understand-what-rcm-created", "add-recipes-show-to-the-resource", "why-recipes-show-matters", "keep-the-templates-intentionally-plain", "with-two-commands-you-have-something-to-show"] },

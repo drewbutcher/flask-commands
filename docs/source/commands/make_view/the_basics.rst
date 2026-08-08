@@ -39,7 +39,8 @@ Create a Simple Template
 
 .. youtube_embed:: create-a-simple-template-with-flask-make-view
 
-Suppose you want an ``about`` page for your company:
+Suppose you want an ``about`` page for your company.  To create the template,
+type this in the terminal:
 
 .. code-block:: bash
 
@@ -56,7 +57,28 @@ Nice and simple 😌.
 - No model.
 - Just the file.
 
-If you open the new template file, it will look something like this:
+That may sound a little underwhelming at first, but sometimes a single file is
+exactly where you want to begin. Maybe you are sketching out a page. Maybe you
+want to experiment with the HTML before thinking about URLs and controllers.
+Maybe you just want the file on disk first and want to think about the wiring ⚡️
+after your coffee ☕️ kicks in.
+
+Whatever the reason, Flask-Commands is happy to start small.  The template
+file now exists; however, it does **not** appear anywhere in your application
+yet.  You cannot just type ``/about`` into the browser and expect it to work,
+because the view has not been wired up to a route or a controller.
+
+We will wire this file into the application shortly. For now, let’s look at
+exactly what was created, because there is a little more to this file than
+first meets the eye 👀.
+
+Read the Generated Child Template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. youtube_embed:: read-the-generated-child-template
+
+When you open ``app/templates/about.html``, you will find something similar
+to the following:
 
 .. code-block:: html+jinja
 
@@ -70,93 +92,306 @@ If you open the new template file, it will look something like this:
        </div>
    {%- endblock content %}
 
-At first this might look a little odd, expecally if you are new to Jinja.
-The contents of this file are a mixture of Jinja and HTML.  Let's go throught
-this line by line.  There are three sections in this file.
+The only difference may be the saying between the ``div`` tags. I like to
+keep things fresh, so I designed Flask-Commands to randomly select one of its
+sayings when it creates the file. The saying is simply starter content, so you
+can smile at it, ponder its wisdom, and then replace it with the page you
+actually intended to build 😄.
 
-1)  The first line tells Jinja that this template extends ``base.html``.  You
-might be thinking "What is ``base.html``?" I know I would.  For now think of
-``base.html`` as your blueprint on how to structure all your html files. We will
-look at it's content below.
+At first glance, this file may look a little mysterious—especially if Jinja is
+new to you. My reaction would be something like, “Wait a minute—you just sold
+me the wrong thing! It says ``.html``, but I only see one lonely ``div``
+element in this whole document 😤. We asked for a page, and Flask-Commands
+handed us a few curly braces and a philosophical observation about our future
+self. What happened to ``<!DOCTYPE html>``? Where are ``<head>`` and
+``<body>``? Did Flask-Commands forget the rest of the page? 😨”
 
-2) The second section is the title which is what appears on the tab as the
-webpages name.  Inside the block tags ``{% block title %}...{% endblock title %}``
-you see ``{{ super() }}`` this is saying take whatever the base.html has
-insides it's block title and use that.  You can modify this by doing something
-like the following:
+Fortunately, as we will see in a minute, nothing has gone missing. This
+template is a **child template** that inherits all those important HTML tags
+from a shared document structure. But I’m getting ahead of myself. For now,
+let’s focus on the contents of this file: it contains both HTML and Jinja.
+
+Before walking through the file, there are two pieces of Jinja syntax worth
+recognizing:
+
+- ``{% ... %}`` tells Jinja to do something, such as extend another template
+  or define a block.
+- ``{{ ... }}`` tells Jinja to evaluate an expression and place its result
+  into the rendered HTML.
+
+With those two small decoder rings in hand 🕵️, the generated template becomes
+much less mysterious. It has three important parts:
+
+1. It extends ``base.html``.
+2. It defines the title for the browser tab.
+3. It provides the visible content for the page.
+
+The file is short because it does not need to repeat an entire HTML document.
+We will go through each line in detail, but for now remember that the shared
+document structure lives in one place. That means you do not have to edit every
+view file when you want to change a fundamental part of your application’s
+HTML structure.
+
+Understand Jinja Template Inheritance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. youtube_embed:: understand-jinja-template-inheritance
+
+The first line of the generated view tells Jinja where to find that shared
+structure:
+
+.. code-block:: html+jinja
+
+   {% extends "base.html" %}
+
+This small line does a great deal of work.
+
+To understand inheritance, think of ``base.html`` as the standard model of a
+car. It defines the overall structure and includes the standard equipment
+that every version receives.
+
+A child template is like a custom order for one particular car. It tells the
+factory which standard features to keep, which features to replace, and which
+optional features to add.
+
+When Flask renders the child template, Jinja acts like the factory. It begins
+with the standard model from ``base.html``, applies the choices from the child
+template, and delivers one complete, customized HTML page.  In our analogy,
+this page is the finished car ready for the user to drive away 🏎️.
+
+The blocks in ``base.html`` are the available customization points. A child
+template can:
+
+- leave a block alone and inherit its standard contents;
+- override a block and call ``super()`` to keep the standard contents before
+  adding something new;
+- override a block without ``super()`` to replace the standard contents
+  completely.
+
+This gives every page a consistent foundation without forcing every page to
+look or behave exactly the same.
+
+Customize the Title and Content Blocks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. youtube_embed:: customize-the-title-and-content-blocks
+
+The generated title block looks like this:
+
+.. code-block:: html+jinja
+
+   {% block title %}{{ super() }}{% endblock title %}
+
+The ``super()`` function asks Jinja to use the contents of the same block from
+``base.html``. When we dive into ``base.html``, we will see that this block is
+configured to be the application name converted to title case.
+
+Suppose the application is named ``Flask Commands``. The generated title block
+will keep that title exactly as it is.
+
+You can retain the application name while adding a page-specific title:
 
 .. code-block:: html+jinja
 
    {% block title %}About | {{ super() }}{% endblock title %}
 
-Then the tab will have the title of "About | " followed by whatever
-the ``base.html`` has in it's title section.
+The browser tab will now display:
 
-3) The third section is where most of your work will be places.  It's the
-block of content ``{% block title %}...{% endblock title %}`` which is what
-shows up on the page.
+.. code-block:: text
 
-Lets now disect ``base.html`` which is located in the app template directory.
-This file provides the shared HTML document structure. This way all your html
-pages have a uniform structure. The file is more Jinja and HTML
+   About | Flask Commands
+
+You can also replace the inherited title completely by leaving out
+``super()``:
+
+.. code-block:: html+jinja
+
+   {% block title %}About Our Company{% endblock title %}
+
+The content block works the same way:
+
+.. code-block:: html+jinja
+
+   {% block content %}
+       <div>
+           Your future self is your most important user.
+       </div>
+   {%- endblock content %}
+
+When Jinja renders the page, this ``div`` is placed wherever ``base.html``
+defines its ``content`` block. This is where most of the page-specific HTML
+will live.
+
+Notice the dash at the beginning of ``{%- endblock content %}``. That dash
+tells Jinja to trim the whitespace immediately before the tag. It helps keep
+the final rendered HTML tidy without changing the visual layout of the page.
+
+At this point, you are probably thinking, “Okay, I understand what this child
+template is trying to accomplish, but how do all these puzzle pieces fit
+together to make the complete HTML document I am used to seeing?” Let's now
+dive into the ``base.html`` file and find out.
+
+Meet the Base Template
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. youtube_embed:: meet-the-base-template
+
+Now open ``app/templates/base.html`` and look at the standard model our
+views are customizing:
 
 .. code-block:: html+jinja
 
    <!DOCTYPE html>
    <html lang="en">
    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>{% block title %}{{ config['APP_NAME'] | title }}{% endblock title %}</title>
-      {%- block metadata %}{% endblock metadata %}
-      {%- block styles %}
-         <link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
-      {%- endblock styles %}
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>{% block title %}{{ config['APP_NAME'] | title }}{% endblock title %}</title>
+       {%- block metadata %}{% endblock metadata %}
+       {%- block styles %}
+           <link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
+       {%- endblock styles %}
    </head>
    <body>
-      {%- block content %}{% endblock content %}
-      {%- block scripts %}{% endblock scripts %}
+       {%- block content %}{% endblock content %}
+       {%- block scripts %}{% endblock scripts %}
    </body>
    </html>
 
-For those familar with HTML this is a boilerplate HTML file which a few
-changes.  Inside the title tags we create a block for title content and
-prepopulate it with the applications name (in title case) which is found in
-your ``.env`` file.  Also we make a block for metadata with nothing in it.  We
-add in a style block and put in tailwind.  The v=time.time() is use as a
-browser cache buster so as you are developing your style file updates.
-You can remove `` v=time.time()`` when you are finished making changes to
-your website for the time being.  I have never gotten to that point myself.
-The block content is where you will put all of your main content for the page.
-Finally the script block is where you would add any javascript files.
+If you are already familiar with HTML, most of this should feel comfortably
+ordinary. That is intentional. The base template is a standard HTML document
+with five carefully placed Jinja blocks:
 
-A key concept to note here is that if you add anything inside one of the blocks
-in the ``base.html`` then that will populate to all of your html files that
-extend ``base.html`` which should be all of your html files.  For example, you
-will want your style sheet on every page so instead of writing the line
-``<link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">``
-over and over again in each file you just put it in.  If you add a javascript
-library to base then you will have that same javascript library on every single
-page which may or may not be what you want.  The warning is to be careful with
-what you change in ``base.html``
+- ``title`` provides the browser-tab title. Its default value is the
+  application name from Flask’s configuration, converted to title case.
+- ``metadata`` provides a place for page-specific metadata inside ``<head>``.
+- ``styles`` provides the shared stylesheet and a place for additional or
+  replacement styles.
+- ``content`` provides the main page-specific HTML inside ``<body>``.
+- ``scripts`` provides a place for JavaScript immediately before
+  ``</body>``.
 
-So now that we have debunked the mistory of a view template it may sound a
-little underwhelming at first, but sometimes that is exactly what you want.
-Maybe you are making a basic page. Maybe you are sketching something out.
-Maybe you just want the file on disk first and want to think about the wiring
-after your coffee ☕️ kicks in.
+Some blocks contain useful defaults, while others begin empty. An empty block
+is not unfinished. It is a reserved customization point waiting for a child
+template that needs it.
 
-The important thing to know is this: the template now exists, but it does
-**not** appear anywhere in your application yet. You cannot just type
-``/about`` into the browser and expect it to work, because the view has not
-been wired up to a route or a controller.
+The real advantage is not merely that ``base.html`` saves a few lines of
+typing. It gives the entire application one dependable document structure.
+When something genuinely belongs on every page, you have one place to put it.
+
+That power deserves a small warning label ⚠️: changes to ``base.html`` can
+affect every template that extends it. Shared navigation, fonts, or styles may
+belong there. A script needed by one unusually enthusiastic page probably
+does not.
+
+Inherit, Add, or Replace Styles
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. youtube_embed:: inherit-add-or-replace-styles
+
+The ``styles`` block contains Tailwind by default:
+
+.. code-block:: html+jinja
+
+   {%- block styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
+   {%- endblock styles %}
+
+As we have already seen, a child template has three choices.
+
+First, it can leave the block alone. In this case Tailwind will be inherited
+automatically, which is what the generated view does.
+
+Second, it can keep Tailwind and add another stylesheet by calling
+``super()``:
+
+.. code-block:: html+jinja
+
+   {% block styles %}
+       {{ super() }}
+       <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+   {%- endblock styles %}
+
+Jinja renders the inherited Tailwind stylesheet first and then adds
+``about.css``.
+
+Third, the child can replace Tailwind by overriding the block without calling
+``super()``:
+
+.. code-block:: html+jinja
+
+   {% block styles %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+   {%- endblock styles %}
+
+Now only ``about.css`` is included for that page.
+
+This is why Tailwind lives *inside* the block. The child template can inherit
+it, add to it, or replace it without modifying the shared base template.
+
+One thing that might leave you scratching your head 🤔 is the ``v=time.time()``
+argument.  This adds the current timestamp to the stylesheet
+URL as a query parameter. During development, this prevents the browser from
+continuing to serve an older cached copy after you change the CSS.
+
+The generated application factory registers a context processor inside
+``create_app()`` in ``app/__init__.py``. This exposes Python’s ``time`` module
+to every Jinja template renered by the application, allowing each template
+to call ``time.time()`` without importing it or passing it explicitly
+to every ``render_template()`` call.
+
+For production, you may eventually want to replace the changing timestamp
+with a release or asset version so the browser can cache the stylesheet
+efficiently. I say *eventually* because a website is never truly finished; it
+merely reaches a point where we stop touching it long enough to deploy 😄.
+
+Use Metadata and Scripts
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. youtube_embed:: use-metadata-and-scripts
+
+The ``metadata`` block lives inside ``<head>`` and begins empty. A child
+template can use it to add page-specific information:
+
+.. code-block:: html+jinja
+
+   {% block metadata %}
+       <meta name="description" content="Learn more about our company.">
+   {% endblock metadata %}
+
+This gives the ``about`` page its own description without placing that
+description on every other page.
+
+The ``scripts`` block follows the same idea:
+
+.. code-block:: html+jinja
+
+   {% block scripts %}
+       <script src="{{ url_for('static', filename='about.js') }}"></script>
+   {% endblock scripts %}
+
+In ``base.html``, the ``scripts`` block appears immediately before
+``</body>``. Keeping it there allows the browser to encounter the page content
+before loading page-specific JavaScript.
+
+If every page needs the same metadata, stylesheet, or script, place it in the
+corresponding block in ``base.html``. If only one page needs it, override the
+block in that child template. When you want the shared content *and* the
+page-specific addition, call ``super()``.
+
+That is the quiet strength of template inheritance: one shared structure,
+small focused child templates, and enough flexibility for every page to become
+itself.
+
+Our ``about.html`` file now makes much more sense—but it is still only a file.
+To make it appear in the browser, we need to connect it to the rest of the
+application. Before we do that, we should meet the namespace Flask-Commands
+uses for main document-style pages.
 
 Understand the ``mains`` Namespace
 ----------------------------------
 
 .. youtube_embed:: understand-the-mains-namespace
-
-Before we wire up that ``about`` page, we should talk about ``mains``.
 
 Flask-Commands gives you a built-in namespace called ``mains`` for the main
 document-style pages in your application. Think things like:
