@@ -93,10 +93,10 @@ to the following:
    {%- endblock content %}
 
 The only difference may be the saying between the ``div`` tags. I like to
-keep things fresh, so I designed Flask-Commands to randomly select one of its
-sayings when it creates the file. The saying is simply starter content, so you
-can smile at it, ponder its wisdom, and then replace it with the page you
-actually intended to build 😄.
+keep things fresh, so I designed Flask-Commands to randomly select
+an inspirational comment when it creates the file. The saying is simply
+starter content, so you can smile at it, ponder its wisdom, and then replace
+it with the page you actually intended to build 😄.
 
 At first glance, this file may look a little mysterious—especially if Jinja is
 new to you. My reaction would be something like, “Wait a minute—you just sold
@@ -293,7 +293,7 @@ The ``styles`` block contains Tailwind by default:
 
 .. code-block:: html+jinja
 
-   {%- block styles %}
+   {% block styles %}
        <link rel="stylesheet" href="{{ url_for('static', filename='tailwind.min.css', v=time.time()) }}">
    {%- endblock styles %}
 
@@ -357,7 +357,7 @@ template can use it to add page-specific information:
 
    {% block metadata %}
        <meta name="description" content="Learn more about our company.">
-   {% endblock metadata %}
+   {%- endblock metadata %}
 
 This gives the ``about`` page its own description without placing that
 description on every other page.
@@ -368,7 +368,7 @@ The ``scripts`` block follows the same idea:
 
    {% block scripts %}
        <script src="{{ url_for('static', filename='about.js') }}"></script>
-   {% endblock scripts %}
+   {%- endblock scripts %}
 
 In ``base.html``, the ``scripts`` block appears immediately before
 ``</body>``. Keeping it there allows the browser to encounter the page content

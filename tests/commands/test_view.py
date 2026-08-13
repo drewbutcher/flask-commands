@@ -216,7 +216,7 @@ def test_make_view_component_only_renders_with_base_template(
         '    <meta charset="UTF-8">\n'
         '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
         "    <title>Test Application</title>\n"
-        '        <link rel="stylesheet" href="/static/tailwind.min.css?v=123.0">\n'
+        '    <link rel="stylesheet" href="/static/tailwind.min.css?v=123.0">\n'
         "</head>\n"
         "<body>\n"
         "    <div>\n"
