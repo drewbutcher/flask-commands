@@ -8,6 +8,13 @@ This project follows `Keep a Changelog <https://keepachangelog.com/>`_ and
 Unreleased
 ----------
 
+0.4.1 - 2026-08-15
+------------------
+Added
+~~~~~
+- Add YouTube video IDs for the template inheritance and model persistence
+  tutorial series.
+
 0.4.0 - 2026-08-08
 ------------------
 Added

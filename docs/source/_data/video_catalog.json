@@ -113,37 +113,37 @@
     "create-a-simple-template-with-flask-make-view": {
       "title": "Create a simple template with flask make:view",
       "description": "Create an about template with flask make:view, find the generated file, and understand exactly what the command creates when no optional flags are used.",
-      "video_id": ""
+      "video_id": "uWXZYdGV4ck"
     },
     "read-the-generated-child-template": {
       "title": "Read the generated child template",
       "description": "Open a generated view and learn what its extends statement, title block, content block, and randomly selected saying are doing.",
-      "video_id": ""
+      "video_id": "X2_SsRnfkuA"
     },
     "understand-jinja-template-inheritance": {
       "title": "Understand Jinja template inheritance",
       "description": "See how a base template, child template, Jinja blocks, and super() combine to produce one complete customized HTML page.",
-      "video_id": ""
+      "video_id": "0bajVe71iP4"
     },
     "customize-the-title-and-content-blocks": {
       "title": "Customize the title and content blocks",
       "description": "Learn how to inherit, extend, or replace the browser title and where to write the page-specific HTML users will see.",
-      "video_id": ""
+      "video_id": "a8JITEcT3l0"
     },
     "meet-the-base-template": {
       "title": "Meet the base template",
       "description": "Tour the shared HTML structure and the five Jinja blocks provided by the generated base.html template.",
-      "video_id": ""
+      "video_id": "a0zPqrqwlPM"
     },
     "inherit-add-or-replace-styles": {
       "title": "Inherit, add, or replace styles",
       "description": "Use the styles block and super() to inherit Tailwind, add a page-specific stylesheet, or replace the shared stylesheet completely.",
-      "video_id": ""
+      "video_id": "Savi4FLrSdI"
     },
     "use-metadata-and-scripts": {
       "title": "Use metadata and scripts",
       "description": "Add page-specific metadata and JavaScript while keeping scripts in their intended position immediately before the closing body tag.",
-      "video_id": ""
+      "video_id": "SrXzCLP_Ny0"
     },
     "understand-the-mains-namespace": {
       "title": "Understand the mains Namespace",
@@ -388,7 +388,7 @@
     "what-the-model-includes": {
       "title": "What the model includes",
       "description": "Learn what Flask-Commands puts into the generated model file so you know which parts are ready immediately and which parts you still need to shape yourself.",
-      "video_id": ""
+      "video_id": "6Qvp7kL6RqU"
     },
     "edit-the-model-and-migrate-the-database": {
       "title": "Edit the model and migrate the database",
@@ -398,7 +398,7 @@
     "create-update-and-delete-a-recipe": {
       "title": "Create, Update, and Delete a Recipe",
       "description": "Learn how to use the generated model methods in a Flask shell to create, update, and delete recipe records after the database schema is ready.",
-      "video_id": ""
+      "video_id": "cj9S1PSDjb4"
     },
     "build-a-resource-with-make-model-and-crud": {
       "title": "Build a resource with make:model --crud",
